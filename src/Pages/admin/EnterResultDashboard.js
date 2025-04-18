@@ -13,7 +13,7 @@ const EnterResultDashboard = () => {
   
   useEffect(() => {
     // Fetch all companies initially
-    fetch("http:/localhost:8080/api/companies")
+    fetch("https://placement-assistant-system.onrender.com/api/companies")
       .then((response) => response.json())
       .then((data) => setCompanies(data))
       .catch((error) => console.error("Error fetching companies:", error));
