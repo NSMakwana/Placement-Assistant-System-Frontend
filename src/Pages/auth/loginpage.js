@@ -15,7 +15,7 @@ function LoginPage() {
   const handleSubmit= async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:8080/api/user/login", {
+      const response = await fetch("https://placement-assistant-system.onrender.com/api/user/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
