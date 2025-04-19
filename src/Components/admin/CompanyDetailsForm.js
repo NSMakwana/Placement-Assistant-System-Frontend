@@ -136,7 +136,33 @@ const CompanyDetailsForm = () => {
   };
 
   // Handle file upload to backend and auto-fill form
-  // Handle file upload to backend and auto-fill form
+  const handleFileUpload = async () => {
+    if (!file) return alert('Please select a file.');
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      setLoading(true);
+      const response = await axios.post(
+        'https://placement-assistant-system.onrender.com/api/extract-jd', // Replace with your backend URL
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+
+      // Assuming response.data contains the parsed company data
+      setFormData(response.data); // Auto-fill the form with the extracted data
+    } catch (error) {
+      console.error('Error uploading file:', error);
+      alert('Failed to extract data.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <form className="company-form" onSubmit={handleSubmit}>
