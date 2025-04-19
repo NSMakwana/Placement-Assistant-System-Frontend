@@ -145,7 +145,7 @@ const CompanyDetailsForm = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        'https://placement-assistant-system.onrender.com/api/extract-jd', // Replace with your backend URL
+        'https://placement-assistant-system.onrender.com/api/jd/extract-jd', // Replace with your backend URL
         formData,
         {
           headers: {
