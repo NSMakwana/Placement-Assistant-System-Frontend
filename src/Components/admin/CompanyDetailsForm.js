@@ -22,7 +22,6 @@ const CompanyDetailsForm = () => {
     },
     designations: [],
   });
-  const [file, setFile] = useState(null);
 
   const handleChange = (field, value) => {
     setFormData({ ...formData, [field]: value });
@@ -90,62 +89,16 @@ const CompanyDetailsForm = () => {
 
   const removeProcess = (dIndex, pIndex) => {
     const updatedDesignations = [...formData.designations];
-    updatedDesignations[dIndex].placementProcess = updatedDesignations[
-      dIndex
+    updatedDesignations[dIndex].placementProcess = updatedDesignations[ 
+      dIndex 
     ].placementProcess.filter((_, idx) => idx !== pIndex);
     setFormData({ ...formData, designations: updatedDesignations });
-  };
-
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Submitting form data:', formData);
 
-    // Handle JD file upload and processing (Gemini)
-    if (file) {
-      const formDataFile = new FormData();
-      formDataFile.append('file', file);
-
-      try {
-        // Send file to backend for processing with Gemini
-        const response = await fetch('https://placement-assistant-system.onrender.com/api/upload-jd', {
-          method: 'POST',
-          body: formDataFile,
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          // Pre-fill the form fields with extracted data
-          setFormData({
-            ...formData,
-            name: data.companyName || formData.name,
-            batch: data.batch || formData.batch,
-            address: {
-              ...formData.address,
-              city: data.city || formData.address.city,
-              state: data.state || formData.address.state,
-            },
-            contactPerson: {
-              ...formData.contactPerson,
-              name: data.contactPerson?.name || formData.contactPerson.name,
-              designation: data.contactPerson?.designation || formData.contactPerson.designation,
-              email: data.contactPerson?.email || formData.contactPerson.email,
-            },
-            designations: data.designations || formData.designations,
-          });
-        } else {
-          alert('Failed to process JD file.');
-        }
-      } catch (error) {
-        console.error('Error processing JD file:', error);
-        alert('Error processing JD file.');
-      }
-    }
-
-    // Submit company details form
     try {
       const response = await fetch('https://placement-assistant-system.onrender.com/api/companies', {
         method: 'POST',
@@ -247,12 +200,13 @@ const CompanyDetailsForm = () => {
             if (key === 'placementProcess') {
               return (
                 <div key={`${dIndex}-process`}>
-                  {/* Round Heading and Add Round Button */}                  
-                  <div className='headings'>Placement Process
-                    <button type="button" onClick={() => addProcess(dIndex)}>
-                      Add Round
-                    </button>
-                  </div>
+                  {/* Round Heading and Add Round Button */}                 
+                    
+                         <div className='headings'>Placement Process                       
+                          <button type="button" onClick={() => addProcess(dIndex)}>
+                            Add Round
+                          </button>                     
+                 </div>
 
                   {/* Placement Process (Rounds) */}
                   {designation.placementProcess.map((process, pIndex) => (
@@ -317,13 +271,13 @@ const CompanyDetailsForm = () => {
       ))}
 
       {/* Add Designation Button */}
-      <button className="add-designation-btn" type="button" onClick={addDesignation}>
+      <button  class="add-designation-btn" type="button" onClick={addDesignation}>
         Add Designation
       </button>
 
       {/* Submit Button */}
       <button type="submit">Submit</button>
-    </form>
+    </form> 
   );
 };
 
