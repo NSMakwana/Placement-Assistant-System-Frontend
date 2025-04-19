@@ -258,7 +258,7 @@ const CompanyDetailsForm = () => {
           {Object.keys(designation).map((key) => {
             if (key === 'placementProcess') {
               return (
-                <div key={`${dIndex}-process`}>
+                <div key={${dIndex}-process}>
                   <div className="headings">
                     Placement Process
                     <button type="button" onClick={() => addProcess(dIndex)}>
