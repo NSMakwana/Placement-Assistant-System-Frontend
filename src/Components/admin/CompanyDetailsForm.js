@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './CompanyDetailsForm.css';
+import axios from 'axios';
 
 const CompanyDetailsForm = () => {
   const [formData, setFormData] = useState({
@@ -23,10 +24,15 @@ const CompanyDetailsForm = () => {
     designations: [],
   });
 
+  const [file, setFile] = useState(null); // State for file upload
+  const [loading, setLoading] = useState(false); // State to handle loading
+
+  // Handle field change
   const handleChange = (field, value) => {
     setFormData({ ...formData, [field]: value });
   };
 
+  // Handle nested field change (for address/contactPerson)
   const handleNestedChange = (section, field, value) => {
     setFormData({
       ...formData,
@@ -37,6 +43,7 @@ const CompanyDetailsForm = () => {
     });
   };
 
+  // Handle change for designations and required qualifications
   const handleDesignationChange = (index, field, value) => {
     const updatedDesignations = [...formData.designations];
     if (field === 'requiredQualifications') {
@@ -95,6 +102,12 @@ const CompanyDetailsForm = () => {
     setFormData({ ...formData, designations: updatedDesignations });
   };
 
+  // Handle file selection
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
+  // Submit form data to the backend
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Submitting form data:', formData);
@@ -122,8 +135,55 @@ const CompanyDetailsForm = () => {
     }
   };
 
+  // Handle file upload to backend and auto-fill form
+  const handleFileUpload = async () => {
+    if (!file) return alert('Please select a file.');
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      setLoading(true);
+      const response = await axios.post(
+        'https://placement-assistant-system.onrender.com/api/extract-jd', // Replace with your backend URL
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+
+      // Assuming response.data contains the parsed company data
+      setFormData(response.data); // Auto-fill the form with the extracted data
+    } catch (error) {
+      console.error('Error uploading file:', error);
+      alert('Failed to extract data.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <form className="company-form" onSubmit={handleSubmit}>
+      {/* File Upload Section */}
+      <div className="file-upload">
+        <input
+          type="file"
+          accept=".pdf"
+          onChange={handleFileChange}
+          disabled={loading}
+        />
+        <button
+          type="button"
+          onClick={handleFileUpload}
+          disabled={loading}
+          className={loading ? 'loading' : ''}
+        >
+          {loading ? 'Uploading...' : 'Upload & Extract Data'}
+        </button>
+      </div>
+
       {/* Company Info */}
       <table className="company-info">
         <tr>
@@ -185,7 +245,6 @@ const CompanyDetailsForm = () => {
           {/* Designation Heading */}
           <div className="headings">
             Designation {dIndex + 1}
-            {/* Remove Designation Button */}
             <button
               type="button"
               className="remove-designation-btn"
@@ -200,20 +259,18 @@ const CompanyDetailsForm = () => {
             if (key === 'placementProcess') {
               return (
                 <div key={`${dIndex}-process`}>
-                  {/* Round Heading and Add Round Button */}                 
-                    
-                         <div className='headings'>Placement Process                       
-                          <button type="button" onClick={() => addProcess(dIndex)}>
-                            Add Round
-                          </button>                     
-                 </div>
+                  <div className="headings">
+                    Placement Process
+                    <button type="button" onClick={() => addProcess(dIndex)}>
+                      Add Round
+                    </button>
+                  </div>
 
                   {/* Placement Process (Rounds) */}
                   {designation.placementProcess.map((process, pIndex) => (
                     <div key={pIndex}>
                       <div className="headings">
                         Round {pIndex + 1}
-                        {/* Remove Round Button */}
                         <button
                           type="button"
                           className="remove-round-btn"
@@ -271,13 +328,13 @@ const CompanyDetailsForm = () => {
       ))}
 
       {/* Add Designation Button */}
-      <button  class="add-designation-btn" type="button" onClick={addDesignation}>
+      <button className="add-designation-btn" type="button" onClick={addDesignation}>
         Add Designation
       </button>
 
       {/* Submit Button */}
       <button type="submit">Submit</button>
-    </form> 
+    </form>
   );
 };
 
