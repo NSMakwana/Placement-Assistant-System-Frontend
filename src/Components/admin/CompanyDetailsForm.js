@@ -494,44 +494,48 @@ const CompanyDetailsForm = () => {
   };
 
   // Handle file upload to backend and auto-fill form
-  const handleFileUpload = async () => {
-    if (!file) return alert('Please select a file.');
+  // Handle file upload to backend and auto-fill form
+const handleFileUpload = async () => {
+  if (!file) return alert('Please select a file.');
 
-    const formDataToSend = new FormData();
-    formDataToSend.append('file', file);
+  const formDataToSend = new FormData();
+  formDataToSend.append('file', file);
 
-    try {
-      setLoading(true);
-      const response = await axios.post(
-        'https://placement-assistant-system.onrender.com/api/jd/extract-jd',
-        formDataToSend,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        }
-      );
+  try {
+    setLoading(true); // Set loading state to true
 
-      if (response.status === 200) {
-        console.log('Extracted data:', response.data);
-        // Assuming response.data matches your formData structure
-        setFormData(response.data);
-        alert('Job description details extracted and form pre-filled!');
-      } else {
-        console.error('Error extracting data:', response.status, response.data);
-        let errorMessage = 'Failed to extract data.';
-        if (response.data && response.data.error) {
-          errorMessage = `Error: ${response.data.error}`;
-        }
-        alert(errorMessage);
+    // Send the file to the backend (update URL with the correct backend endpoint)
+    const response = await axios.post(
+      'https://placement-assistant-system.onrender.com/api/jd/extract-jd', // Update URL if necessary
+      formDataToSend,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       }
-    } catch (error) {
-      console.error('Error uploading file:', error);
-      alert('Failed to upload file and extract data.');
-    } finally {
-      setLoading(false);
+    );
+
+    if (response.status === 200) {
+      console.log('Extracted data:', response.data);
+      // Assuming response.data matches your formData structure, auto-fill the form
+      setFormData(response.data); 
+      alert('Job description details extracted and form pre-filled!');
+    } else {
+      console.error('Error extracting data:', response.status, response.data);
+      let errorMessage = 'Failed to extract data.';
+      if (response.data && response.data.error) {
+        errorMessage = `Error: ${response.data.error}`;
+      }
+      alert(errorMessage);
     }
-  };
+  } catch (error) {
+    console.error('Error uploading file:', error);
+    alert('Failed to upload file and extract data.');
+  } finally {
+    setLoading(false); // Set loading state back to false
+  }
+};
+
 
   return (
     <form className="company-form" onSubmit={handleSubmit}>
