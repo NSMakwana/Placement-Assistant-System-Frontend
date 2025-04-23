@@ -2,11 +2,13 @@
 .app {
   display: flex; /* Flexbox for sidebar and content layout */
   height: 100vh; /* Full screen height */
+  overflow: hidden; /* Ensure no page scrolling on the main container */
 }
 
 /* Sidebar */
 .sidebar {
   flex: 0 0 15%; /* Sidebar takes 15% of the width */
+  background-color: #f4f4f4;
 }
 
 /* Main Content Area */
@@ -14,20 +16,33 @@
   flex: 1; /* Main content takes the remaining space */
   display: flex;
   flex-direction: column;
+  height: 100vh; /* Ensure full height */
+  overflow: hidden; /* Prevent scrolling of the entire content */
 }
 
 /* Header */
-.main-content > header {
+header {
+  position: sticky;
   height: 50px; /* Fixed height for header */
   background-color: #f8f8f8;
   border-bottom: 1px solid #ddd;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  top: 0;
+  z-index: 10;
 }
 
 /* Content Area */
 .content {
+  position: static;
   flex: 1; /* Remaining space goes to content */
   padding: 20px;
-  overflow-y: auto; 
-  
+  overflow-y: auto; /* Make the content scrollable */
+  margin-top: 10px; /* Add margin if needed */
+}
+
+.sticky-header {
+  position: sticky;
+  top: 0;
+  background-color: #09a9b8;  /* Turquoise */
+  z-index: 10;
 }

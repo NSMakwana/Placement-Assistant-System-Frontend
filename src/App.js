@@ -1,4 +1,3 @@
-
 // App.js
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
@@ -19,6 +18,7 @@ import A_AnalysisDashboard from './Pages/admin/A_AnalysisDashboard';
 
 function App() {
   return (
+           
     <Routes>
       {/* Public Routes */}
       <Route path="/login" element={<LoginPage />} />
@@ -53,4 +53,4 @@ function App() {
   );
 }
 
-export default App;
+export default App; 

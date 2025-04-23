@@ -252,3 +252,12 @@
 .company-info{
   border:none;
 }
+
+
+body.modal-open {
+  overflow: hidden;
+}
+
+header {
+  position: sticky;
+}
