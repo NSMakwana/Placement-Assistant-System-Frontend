@@ -506,7 +506,7 @@ const handleFileUpload = async () => {
 
     // Send the file to the backend (update URL with the correct backend endpoint)
     const response = await axios.post(
-      'https://placement-assistant-system.onrender.com/api/jd/extract-jd', // Update URL if necessary
+      'https://placement-assistant-system.onrender.com/api/jd/extract-jd-local', // Update URL if necessary
       formDataToSend,
       {
         headers: {
