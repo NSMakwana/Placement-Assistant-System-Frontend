@@ -79,7 +79,7 @@ const Filters = ({ onFilter, downloadCSV, downloadPDF }) => {
       </div>
 
       <div>
-        <img src="/Images/Search.png" height="22px" width="22px" alt="search" />
+        <img src="../Images/Search.png" height="22px" width="22px" alt="search" />
         <input
           type="text"
           placeholder="Search..."
@@ -89,13 +89,13 @@ const Filters = ({ onFilter, downloadCSV, downloadPDF }) => {
       </div>
       <div>
         <button className="download-btn" onClick={downloadCSV}>
-          <img src="/Images/Download.png" height="22px" width="25px" alt="search" />
+          <img src="../Images/Download.png" height="22px" width="25px" alt="download" />
           Download(.CSV)
         </button>
       </div>
       <div>
         <button className="download-btn" onClick={downloadPDF}>
-          <img src="/Images/Download.png" height="22px" width="25px" alt="search" />
+          <img src="../Images/download.png" height="22px" width="25px" alt="search" />
           Download(.pdf)
         </button>
       </div>

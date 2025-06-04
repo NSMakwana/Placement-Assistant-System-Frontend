@@ -80,12 +80,12 @@ const A_Dashboard = () => {  // Receive selectedMenu as a prop
         filtered = filtered.filter((s) => s.hsc.percentage <= hscLimit); // Filter by HSC percentage
       }
 
-      if (key === "bachelorPercentage" && value) {
+      if (key === "bachelorPercentage" && value){
         const bachelorLimit = parseInt(value, 10);
         filtered = filtered.filter((s) => s.bachelor.percentage <= bachelorLimit); // Filter by Bachelor's percentage
       }
 
-      if (key === "drops" && value) {
+      if (key === "drops" && value){
         filtered = filtered.filter((s) => s.drops === parseInt(value, 10)); // Filter by drops
       }
     
