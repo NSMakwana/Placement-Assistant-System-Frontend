@@ -493,7 +493,7 @@ const CompanyDetailsForm = () => {
     }
   };
 
-  // Handle file upload to backend and auto-fill form
+  
   // Handle file upload to backend and auto-fill form
 const handleFileUpload = async () => {
   if (!file) return alert('Please select a file.');

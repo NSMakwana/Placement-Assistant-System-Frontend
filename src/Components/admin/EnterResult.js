@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-// import "./EnterResult.css";
+import "./EnterResult.css";
 
 const EnterResult = ({ selectedCompany,selectedDesignation }) => {
   const [rounds, setRounds] = useState([]);

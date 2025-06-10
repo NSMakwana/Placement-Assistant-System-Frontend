@@ -38,9 +38,9 @@ const CompanyDashboard = () => {
         filtered = filtered.filter((s) => s.batch === value); // Filter by batch
       }
   
-      if (key === "program" && value) {
-        filtered = filtered.filter((s) => s.course === value); // Filter by
-      }
+      // if (key === "program" && value) {
+      //   filtered = filtered.filter((s) => s.course === value); // Filter by
+      // }
   
       if (key === "search" && value) {
         filtered = filtered.filter((s) =>s.name.toLowerCase().includes(value.toLowerCase()) // Filter by name
