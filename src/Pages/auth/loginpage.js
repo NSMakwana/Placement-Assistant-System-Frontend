@@ -17,6 +17,7 @@ function LoginPage() {
     try {
       const response = await fetch("https://placement-assistant-system.onrender.com/api/user/login", {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },

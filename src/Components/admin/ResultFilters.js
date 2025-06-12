@@ -59,7 +59,7 @@ const ResultFilters = ({ onFilter}) => {
           onChange={(e) => handleFilterChange("program", e.target.value)}
         >  <option value="">Select </option>
           <option value="MCA">MCA</option>
-          <option value="B.Tech">B.Tech</option>
+          <option value="B.Tech">MSc AIML</option>
         </select>
       </div>
 
