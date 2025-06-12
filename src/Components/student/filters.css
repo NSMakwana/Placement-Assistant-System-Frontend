@@ -20,10 +20,9 @@
     margin-top: 10px; /* Optional: space between filters */
   }
   .filters .hsc-filter {
-   margin-left:-27.2%;
-    margin-top: 10px; /* Optional: space between filters */
+  flex-basis: 40%; /* Take full width */
+  margin-top: 10px; /* Optional: space between filters */
   }
-  
   .select {
     padding: 8px;
     font-size: 16px;
