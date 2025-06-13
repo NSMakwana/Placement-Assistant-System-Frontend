@@ -81,13 +81,13 @@ const Filters = ({ onFilter,downloadCSV,downloadPDF}) => {
       </div>
        <div>
         <button className="download-btn" onClick={downloadCSV}>
-        <img src="/Images/Download.png" height="22px" width="25px" alt="search" />
+        <img src="./Images/Download.png" height="22px" width="25px" alt="search" />
           Download(.CSV)
         </button>
       </div>
       <div>
         <button className="download-btn" onClick={downloadPDF}>
-        <img src="/Images/Download.png" height="22px" width="25px" alt="search" />
+        <img src="./Images/Download.png" height="22px" width="25px" alt="search" />
           Download(.pdf)
         </button>
       </div>
@@ -107,7 +107,8 @@ const Filters = ({ onFilter,downloadCSV,downloadPDF}) => {
       </div>
 
       <div  className="hsc-filter">
-        <label>H.S.C.</label>
+        {/* &nsbp is a typo. The correct HTML entity for a non-breaking space is &nbsp; */}
+        <label>&nbsp;</label>
         <select
           className="select"
           value={hscPercentage}

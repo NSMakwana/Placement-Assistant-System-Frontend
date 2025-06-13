@@ -17,13 +17,14 @@
   
   /* Force SSC filter to the next line */
   .filters .ssc-filter {
-    flex-basis: 40%; /* Take full width */
+    /* flex-basis: 40%; Take full width */
     margin-top: 10px; /* Optional: space between filters */
   }
   .filters .hsc-filter {
-   margin-left:-28.2%;
-    margin-top: 10px; /* Optional: space between filters */
+   margin-left:-25.9%;
+   margin-top: 10px; /* Optional: space between filters */
   }
+   
   
   .select {
     padding: 8px;

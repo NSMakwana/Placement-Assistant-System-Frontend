@@ -14,11 +14,14 @@ const A_Dashboard = () => {  // Receive selectedMenu as a prop
   const [selectedStudent, setSelectedStudent] = useState(null); // Track the selected student
   const [selectedBatch, setSelectedBatch] = useState("");
   const [selectedProgram, setSelectedProgram] = useState("");
-  
+  const [sscPercentage, setSSCPercentage] = useState("");
+  const [hscPercentage, setHSCPercentage] = useState("");
+  const [bachelorPercentage, setBachelorPercentage] = useState("");
+  const [drops, setDrops] = useState(""); 
  
 
 
-  // Fetching student data from the API on component mount
+  // Fetching student data from the API 
   useEffect(() => {
     StudentService.getStudents()
       .then((response) => {
@@ -28,6 +31,51 @@ const A_Dashboard = () => {  // Receive selectedMenu as a prop
       .catch((error) => console.error("Error fetching students:", error));
   }, []);
 
+
+
+  // Filtering students based on selected criteria
+ useEffect(() => {
+    if (selectedBatch && selectedProgram) {
+      let filtered = students.filter(
+        (s) => s.batch === selectedBatch && s.course === selectedProgram
+      );
+
+      if (sscPercentage) {
+        filtered = filtered.filter(
+          (s) => s.ssc.percentage <= parseInt(sscPercentage)
+        );
+      }
+
+      if (hscPercentage) {
+        filtered = filtered.filter(
+          (s) => s.hsc.percentage <= parseInt(hscPercentage)
+        );
+      }
+
+      if (bachelorPercentage) {
+        filtered = filtered.filter(
+          (s) => s.bachelor.percentage <= parseInt(bachelorPercentage)
+        );
+      }
+
+      if (drops) {
+        filtered = filtered.filter((s) => s.drops === parseInt(drops));
+      }
+
+      setFilteredStudents(filtered);
+    } else {
+      
+      setFilteredStudents([]);
+    }
+  }, [
+    selectedBatch,
+    selectedProgram,
+    sscPercentage,
+    hscPercentage,
+    bachelorPercentage,
+    drops,
+    students
+  ]);
   // Handling button click to select options
   const handleOptionClick = (option) => {
     setStudentOption(option); // Set the currently selected option
@@ -40,6 +88,12 @@ const A_Dashboard = () => {  // Receive selectedMenu as a prop
 
     if (key === "clear") {
       filtered=[];
+      setSelectedBatch("");
+      setSelectedProgram("");
+      setSSCPercentage("");
+      setHSCPercentage("");
+      setBachelorPercentage("");
+      setDrops("");
       setFilteredStudents(filtered);
       console.log(filtered);
       return;
@@ -47,13 +101,12 @@ const A_Dashboard = () => {  // Receive selectedMenu as a prop
    
 
     // Apply each filter condition progressively (AND logic)
-    if (key === "batch" && value) {
-      setSelectedBatch(value);
-    }
-
-    if (key === "program" && value) {
-      setSelectedProgram(value);
-    }
+    if (key === "batch" && value)setSelectedBatch(value);
+    if (key === "program" && value) setSelectedProgram(value);
+    if (key === "sscPercentage") setSSCPercentage(value);
+    if (key === "hscPercentage") setHSCPercentage(value);
+    if (key === "bachelorPercentage") setBachelorPercentage(value);
+    if (key === "drops") setDrops(value);
 
     if (key === "search" && value) {
       filtered = filtered.filter((s) =>s.name.toLowerCase().includes(value.toLowerCase()) // Filter by name
@@ -62,45 +115,19 @@ const A_Dashboard = () => {  // Receive selectedMenu as a prop
       console.log(filtered);
       return; 
     }
-    if(selectedBatch && selectedProgram)
-    {
-      if (selectedBatch){
-        filtered = filtered.filter((s) => s.batch === selectedBatch); // Filter by batch
-      }
-      if (selectedProgram){
-        filtered = filtered.filter((s) => s.course === selectedProgram); // Filter by program
-      }
-      if (key === "sscPercentage" && value) {
-        const sscLimit = parseInt(value, 10); // Extract the number from the string like '<60'
-        filtered = filtered.filter((s) => s.ssc.percentage <= sscLimit); // Filter by SSC percentage
-      }
-
-      if (key === "hscPercentage" && value) {
-        const hscLimit = parseInt(value, 10);
-        filtered = filtered.filter((s) => s.hsc.percentage <= hscLimit); // Filter by HSC percentage
-      }
-
-      if (key === "bachelorPercentage" && value){
-        const bachelorLimit = parseInt(value, 10);
-        filtered = filtered.filter((s) => s.bachelor.percentage <= bachelorLimit); // Filter by Bachelor's percentage
-      }
-
-      if (key === "drops" && value){
-        filtered = filtered.filter((s) => s.drops === parseInt(value, 10)); // Filter by drops
-      }
-    
-      setFilteredStudents(filtered);
-      console.log(filtered);
-      
-    }else{
-      filtered = [];
-      setFilteredStudents(filtered);
-      return;
-      }
-    
-   
    
   };
+// const handleClearFilters = () => {
+//   setSelectedBatch("");
+//   setSelectedProgram("");
+//   setSSCPercentage("");
+//   setHSCPercentage("");
+//   setBachelorPercentage("");
+//   setDrops("");
+//   setFilteredStudents(students);
+
+  
+// };
 
   //delete student
   const onDelete = (eno) => {
@@ -269,7 +296,7 @@ const A_Dashboard = () => {  // Receive selectedMenu as a prop
       } else {
         return (
           <div className="viewdetails">
-            <Filters onFilter={handleFilter} downloadCSV={downloadFilteredCSV} downloadPDF={ downloadFilteredPDF}/>
+            <Filters onFilter={handleFilter} downloadCSV={downloadFilteredCSV} downloadPDF={ downloadFilteredPDF} />
             <StudentTable
               students={filteredStudents}
               onView={handleViewStudent} // Trigger view for selected student
