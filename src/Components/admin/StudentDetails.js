@@ -226,8 +226,7 @@ const StudentDetails = ({ student }) => {
         />
       </div>
       <button className="download" onClick={downloadPDF}>
-        <img src="/Images/Download.png" height="22px" width="25px" alt="search" />
-          Download(.pdf)
+        <img src="../Images/download.png" height="22px" width="25px" alt="search"/>         Download(.pdf)
         </button>
     
       </div>
