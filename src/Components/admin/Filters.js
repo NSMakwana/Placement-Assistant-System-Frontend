@@ -79,13 +79,14 @@ const Filters = ({ onFilter, downloadCSV, downloadPDF }) => {
       </div>
 
       <div>
-        <img src="../Images/Search.png" height="22px" width="22px" alt="search" />
+        <img src="../Images/Search.png" height="22px" width="25px" alt="search" />
         <input
           type="text"
           placeholder="Search..."
           value={search}
           onChange={(e) => handleFilterChange("search", e.target.value)}
-        />
+          style={{ marginTop: "15px", marginLeft: "0px"}} 
+          />
       </div>
       <div>
         <button className="download-btn" onClick={downloadCSV}>
@@ -115,7 +116,7 @@ const Filters = ({ onFilter, downloadCSV, downloadPDF }) => {
       </div>
 
       <div className="hsc-filter">
-        <label>H.S.C.</label>
+        <label>H.S.C.&nbsp;&nbsp; &nbsp;</label>
         <select
           className="select"
           value={hscPercentage}
@@ -129,7 +130,7 @@ const Filters = ({ onFilter, downloadCSV, downloadPDF }) => {
         </select>
       </div>
 
-      <div>
+      <div className="bachelor-filter">
         <label>Bachelor</label>
         <select
           className="select"
@@ -143,7 +144,7 @@ const Filters = ({ onFilter, downloadCSV, downloadPDF }) => {
         </select>
       </div>
 
-      <div>
+      <div className="drop-filter">
         <label>Drops</label>
         <select
           className="select"
@@ -160,7 +161,7 @@ const Filters = ({ onFilter, downloadCSV, downloadPDF }) => {
       </div>
 
       {/* Clear Filters Button */}
-      <div>
+      <div className="clear-filter">
         <button className="clear-btn" onClick={handleClearFilters}>
           Clear Filters
         </button>

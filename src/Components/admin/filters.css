@@ -22,10 +22,13 @@
   }
   .filters .hsc-filter {
    margin-left:-25.9%;
-   margin-top: 10px; /* Optional: space between filters */
+    margin-top: 10px; /* Optional: space between filters */
   }
-   
-  
+  .filters .bachelor-filter,.filters .drop-filter,  .filters .clear-filter {
+    /* margin-left:-25.9%; */
+    margin-top: 10px; /* Optional: space between filters */
+  }
+ 
   .select {
     padding: 8px;
     font-size: 16px;

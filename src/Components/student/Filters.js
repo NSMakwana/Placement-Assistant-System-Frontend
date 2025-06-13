@@ -108,7 +108,8 @@ const Filters = ({ onFilter,downloadCSV,downloadPDF}) => {
 
       <div  className="hsc-filter">
         {/* &nsbp is a typo. The correct HTML entity for a non-breaking space is &nbsp; */}
-        <label>&nbsp;</label>
+        <label>H.S.C.</label>
+        <label>H.S.C.</label>
         <select
           className="select"
           value={hscPercentage}
