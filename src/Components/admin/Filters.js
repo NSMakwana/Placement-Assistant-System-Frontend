@@ -90,7 +90,7 @@ const Filters = ({ onFilter, downloadCSV, downloadPDF }) => {
       </div>
       <div>
         <button className="download-btn" onClick={downloadCSV}>
-          <img src="../Images/Download.png" height="22px" width="25px" alt="download" />
+          <img src="../Images/download.png" height="22px" width="25px" alt="download" />
           Download(.CSV)
         </button>
       </div>
