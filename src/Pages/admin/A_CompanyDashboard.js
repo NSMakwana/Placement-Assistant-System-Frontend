@@ -56,7 +56,7 @@ const CompanyDashboard = () => {
     }; 
    const handleNotifyStudents = (companyId) => {
   fetch(`https://placement-assistant-system.vercel.app/api/companies/notify/${companyId}`, {
-    method: 'PATCH',
+    method: 'POST',
   })
     .then((res) => res.json())
     .then((data) => {
