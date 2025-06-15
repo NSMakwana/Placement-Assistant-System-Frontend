@@ -45,7 +45,7 @@ const Sidebar = () => {
           isActive ? "menu-item active" : "menu-item"
         }
       >
-        <img src="/Images/Threeline.png" alt="Agreement Icon" className="menu-icon" />
+        <img src="../Images/Threeline.png" alt="Agreement Icon" className="menu-icon" />
         <span className="menu-text">Agreement Form</span>
       </NavLink>
 
@@ -68,7 +68,7 @@ const Sidebar = () => {
         }
         onClick={(e) => !hasSubmitted && handleNavClick(e)}
       >
-        <img src="/Images/Threeline.png" alt="Detail Icon" className="menu-icon" />
+        <img src="../Images/Threeline.png" alt="Detail Icon" className="menu-icon" />
         <span className="menu-text">Student Detail Form</span>
       </NavLink>
 
@@ -79,7 +79,7 @@ const Sidebar = () => {
         }
         onClick={(e) => !hasSubmitted && handleNavClick(e)}
       >
-        <img src="/Images/Threeline.png" alt="Company Icon" className="menu-icon" />
+        <img src="../Images/Threeline.png" alt="Company Icon" className="menu-icon" />
         <span className="menu-text">View Companies</span>
       </NavLink>
 
@@ -90,7 +90,7 @@ const Sidebar = () => {
         }
         onClick={(e) => !hasSubmitted && handleNavClick(e)}
       >
-        <img src="/Images/Threeline.png" alt="Analysis Icon" className="menu-icon" />
+        <img src="../Images/Threeline.png" alt="Analysis Icon" className="menu-icon" />
         <span className="menu-text">Analysis</span>
       </NavLink>
     </div>
