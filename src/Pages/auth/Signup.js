@@ -17,7 +17,7 @@ function SignupPage({ navigateToLogin }) {
     setErrorMessage(""); // Reset error message
 
     try {
-      const response = await fetch("http://localhost:8080/api/user/signup", {
+      const response = await fetch("https://placement-assistant-system.onrender.com/api/user/signup", {
         method: "POST",
          credentials: "include",
         headers: {
