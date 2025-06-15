@@ -25,7 +25,7 @@ function AgreementForm() {
       try {
         const storedUser = localStorage.getItem('user'); // Replace with dynamic user email, e.g., from auth state
         const email = storedUser ? JSON.parse(storedUser).email : "";
-        const response = await fetch(`http://localhost:8080/api/user/hasSubmitted?email=${email}`);
+        const response = await fetch(`"https://placement-assistant-system.onrender.com/api/user/hasSubmitted?email=${email}`);
         if (response.ok) {
           const data = await response.json();
           setHasSubmitted(data); // If true, the form is already submitted
