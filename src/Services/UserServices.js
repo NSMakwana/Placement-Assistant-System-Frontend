@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://placement-assistant-system.onrender.com/api/users';
+const API_URL = 'https://placement-assistant-system.onrender.com/api/user';
 
 class UserService {
     getusers() {
