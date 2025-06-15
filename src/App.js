@@ -14,6 +14,7 @@ import EnterResultDashboard from './Pages/admin/EnterResultDashboard';
 import A_Dashboard from './Pages/admin/A_Dashboard';
 import A_CompanyDashboard from './Pages/admin/A_CompanyDashboard';
 import A_AnalysisDashboard from './Pages/admin/A_AnalysisDashboard';
+import U_Dashboard from './Pages/admin/U_Dashboard';
 // import PrivateRoute from './routes/PrivateRoute';
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
       <Route path="/admin/*" element={<AdminDashboardLayout />}>
         <Route index element={<A_Dashboard />} />
         <Route path="admin_dashboard" element={<A_Dashboard />} />
+        <Route path="user_dashboard" element={<U_Dashboard />} />
         <Route path="companydetails" element={<A_CompanyDashboard />} />
         <Route path="result" element={<EnterResultDashboard />} />
         <Route path="analysis" element={<A_AnalysisDashboard />} />

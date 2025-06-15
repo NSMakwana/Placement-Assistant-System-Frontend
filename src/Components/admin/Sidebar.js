@@ -16,6 +16,16 @@ function Sidebar() {
       </NavLink>
 
       <NavLink
+        to="user_dashboard"
+        className={({ isActive }) =>
+          isActive ? "menu-item active" : "menu-item"
+        }
+      >
+        <img src="/Images/Threeline.png" alt="Student Icon" className="menu-icon" />
+        <span className="menu-text">User</span>
+      </NavLink>
+
+      <NavLink
         to="admin_dashboard"
         className={({ isActive }) =>
           isActive ? "menu-item active" : "menu-item"
