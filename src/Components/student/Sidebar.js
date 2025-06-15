@@ -10,7 +10,7 @@ const Sidebar = () => {
       try {
         const storedUser = localStorage.getItem("user");
         const email = storedUser ? JSON.parse(storedUser).email : "";
-        const response = await fetch(`http://localhost:8080/api/user/hasSubmitted?email=${email}`);
+        const response = await fetch(`"https://placement-assistant-system.onrender.com/api/user/hasSubmitted?email=${email}`);
         if (response.ok) {
           const data = await response.json();
           setHasSubmitted(data); // data should be a boolean value
