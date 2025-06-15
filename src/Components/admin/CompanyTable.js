@@ -35,12 +35,12 @@ const CompanyTable = ({ companies, onView, onEdit, onDelete, onNotify, onHideFro
                   <td>{companies.name}</td>
                   <td>
                     <div className="action">
-                      <button onClick={() => onNotify(companies.id)}>
+                      <button onClick={() => onNotify(companies._id)}>
                       Notify Students
                     </button>
 
                     {/* New Button: Remove from Student Dashboard */}
-                    <button onClick={() => onHideFromStudent(companies.id)}>
+                    <button onClick={() => onHideFromStudent(companies._id)}>
                       Hide from Students
                     </button>
                       <button onClick={() => onView(companies)}>View</button>

@@ -85,7 +85,7 @@ const CompanyDashboard = () => {
                 className="back-btn"
                 onClick={() => setSelectedCompany(null)} // Go back to table
               >
-                <img src="/Images/Back.png" height="25px" width="25px" />
+                <img src="../Images/Back.png" height="25px" width="25px" />
               </button>
               <CompanyDetails company={selectedCompany} />
             </div>
