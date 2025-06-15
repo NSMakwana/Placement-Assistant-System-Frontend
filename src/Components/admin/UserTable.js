@@ -4,7 +4,7 @@ import "./StudentTable.css";
 const UserTable = ({ users, onDelete }) => {
   if (!users || users.length === 0) {
     return (
-      <div className="no-users-message">
+      <div className="no-students-message">
         <img id="nodata" src="/Images/Nodata.png" height="250px" width="250px" alt="No data available" />
         <center>No users to display</center>
       </div>
