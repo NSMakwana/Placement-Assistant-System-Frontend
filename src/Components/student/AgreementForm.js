@@ -88,7 +88,7 @@ function AgreementForm() {
 
         // Update submission status in backend
         const email = formData.email; // Use logged-in user's email
-        const updateResponse = await fetch(`"https://placement-assistant-system.onrender.com/api/user/updateHasSubmitted?email=${email}`, {
+        const updateResponse = await fetch("https://placement-assistant-system.onrender.com/api/user/updateHasSubmitted?email=${email}", {
           method: "POST",
         });
 
