@@ -27,9 +27,19 @@ function StudentDetails() {
     fetchStudents();
   }, [batch, course]);
 
+  // To write a greater than sign in React JSX, use the plain '>' character.
+  // Example: a &gt; b will render as "a > b" in HTML, but in JSX you can just use '>'.
+  // If you want to use the HTML entity, you can use &gt; as well.
+
   return (
     <div className="student-details">
-      <h4>Dashboard > Student Details</h4>
+      <h4>Dashboard &gt; Student Details</h4>
+
+      {/* Example usage of greater than sign */}
+      <div>
+        <span>5 &gt; 3</span> {/* This will render as: 5 > 3 */}
+        <span>{5 > 3 ? "True" : "False"}</span> {/* This will render as: True */}
+      </div>
 
       {/* Filters Section */}
       <div className="filters">

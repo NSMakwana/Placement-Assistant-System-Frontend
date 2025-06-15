@@ -6,6 +6,8 @@ import { jsPDF } from "jspdf"; // Import jsPDF
 import "jspdf-autotable"; 
 import StudentDetails from "../../Components/admin/StudentDetails";
 import "./A_Dashboard.css";
+import axios from "axios"; // Import axios for file upload
+import * as XLSX from "xlsx"; // Import xlsx
 
 const A_Dashboard = () => {  // Receive selectedMenu as a prop
   const [studentOption, setStudentOption] = useState(); // Default to "ViewDetails"
@@ -18,8 +20,12 @@ const A_Dashboard = () => {  // Receive selectedMenu as a prop
   const [hscPercentage, setHSCPercentage] = useState("");
   const [bachelorPercentage, setBachelorPercentage] = useState("");
   const [drops, setDrops] = useState(""); 
- 
+  const [file, setFile] = useState(null); // State for file upload
+  const [loading, setLoading] = useState(false); // State to handle loading
+  const [studentFile, setStudentFile] = useState(null);
+const [uploadBatch, setUploadBatch] = useState(""); // Batch input
 
+ 
 
   // Fetching student data from the API 
   useEffect(() => {
@@ -117,17 +123,6 @@ const A_Dashboard = () => {  // Receive selectedMenu as a prop
     }
    
   };
-// const handleClearFilters = () => {
-//   setSelectedBatch("");
-//   setSelectedProgram("");
-//   setSSCPercentage("");
-//   setHSCPercentage("");
-//   setBachelorPercentage("");
-//   setDrops("");
-//   setFilteredStudents(students);
-
-  
-// };
 
   //delete student
   const onDelete = (eno) => {
@@ -274,10 +269,86 @@ const A_Dashboard = () => {  // Receive selectedMenu as a prop
   };
 
   
+  // Handle file upload to backend 
+const handleStudentFileChange = (e) => {
+  setStudentFile(e.target.files[0]);
+};
+
+const handleStudentUpload = async () => {
+  if (!studentFile) return alert("Please select a file.");
+  if (!uploadBatch) return alert("Please enter the batch.");
+
+  const reader = new FileReader();
+  reader.onload = async (e) => {
+    const data = new Uint8Array(e.target.result);
+    const workbook = XLSX.read(data, { type: "array" });
+    const sheetName = workbook.SheetNames[0];
+    const sheet = workbook.Sheets[sheetName];
+    const json = XLSX.utils.sheet_to_json(sheet);
+
+    // Expected fields in Excel: name, eno, email
+    const students = json.map((s) => {
+      const name = s.name?.toLowerCase() || "";
+      const password = name.slice(0, 4) + "_" + uploadBatch;
+      return {
+        name: s.name,
+        eno: s.eno,
+        email: s.email,
+        password,
+        role: "student",
+      };
+    });
+
+    try {
+      const response = await axios.post(
+        "https://placement-assistant-system.onrender.com/api/user/upload_user",
+        students
+      );
+      if (response.status === 200) {
+        alert("Student accounts created successfully.");
+        setStudentFile(null);
+        setUploadBatch("");
+      } else {
+        alert("Failed to create student accounts.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Error occurred during upload.");
+    }
+  };
+
+  reader.readAsArrayBuffer(studentFile);
+};
   // Render content based on studentOption
   const renderStudentContent = () => {
     if (studentOption === "EnterDetails") {
-      return <div></div>;
+      return <div className="enterdetails"> 
+       <form className="class-form" onSubmit={(e) => e.preventDefault()}>
+      {/* File Upload Section */}
+      <div className="file-upload">
+        <input
+          type="text"
+          placeholder="Enter Batch (e.g., 2025)"
+          value={uploadBatch}
+          onChange={(e) => setUploadBatch(e.target.value)}
+          disabled={loading}
+        />
+        <input
+          type="file"
+           accept=".csv, .xlsx"
+          onChange={handleStudentFileChange}
+          disabled={loading}
+        />
+        <button
+          type="button"
+          onClick={handleStudentUpload}
+          disabled={loading}
+          className={loading ? 'loading' : ''}
+        >
+          {loading ? 'Uploading...' : 'Upload & Extract Data'}
+        </button>
+      </div>
+      </form></div>;
     }
 
     if (studentOption === "ViewDetails") {

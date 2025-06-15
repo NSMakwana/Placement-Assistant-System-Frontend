@@ -226,7 +226,7 @@ const Dashboard = () => {  // Receive selectedMenu as a prop
   // Render content based on studentOption
   const renderStudentContent = () => {
     if (studentOption === "EnterDetails") {
-      return <div>Enter Student Details Form</div>;
+      return <div>Student Details Form</div>;
     }
 
     if (studentOption === "ViewDetails") {
@@ -237,7 +237,7 @@ const Dashboard = () => {  // Receive selectedMenu as a prop
               className="back-btn"
               onClick={() => setSelectedStudent(null)} // Go back to table
             >
-              <img src="/Images/Back.png" height="25px" width="25px" />
+              <img src="../Images/Back.png" height="25px" width="25px" />
             </button>
             <StudentDetails student={selectedStudent} />
           </div>

@@ -29,7 +29,19 @@
   width:100%;
   
 }
-
+.enterdetails {
+  margin-top:190px; /* Space below navigation buttons */
+  /* Use the full available width */
+  padding: 20px; /* Space inside the section */
+  box-sizing: border-box; /* Include padding in total width */
+  /* Prevent horizontal overflow */
+  /* box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2); Shadow for depth */
+  /* border-bottom: 2px solid #22b1bb; */
+  background-color: #ffffff; /* White background for clarity */
+  margin-bottom: 0;
+  width:100%;
+  
+}
 /* Table Styling */
 .table {
   width: 100%; /* Full width */
