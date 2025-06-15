@@ -55,8 +55,8 @@ const CompanyDashboard = () => {
         setOption(option); // Set the currently selected option
     }; 
    const handleNotifyStudents = (companyId) => {
-  fetch(`https://placement-assistant-system.vercel.app/api/companies/notify/${companyId}`, {
-    method: 'POST',
+  fetch(`https://placement-assistant-system.onrender.com/api/companies/notify/${companyId}`, {
+    method: 'POST'
   })
     .then((res) => res.json())
     .then((data) => {
