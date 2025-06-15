@@ -77,7 +77,7 @@ function AgreementForm() {
     }
 
     try {
-      const response = await fetch("http://localhost:8080/api/agreements", {
+      const response = await fetch("https://placement-assistant-system.onrender.com/api/agreements", {
         method: "POST",
         body: formDataObject,
       });
