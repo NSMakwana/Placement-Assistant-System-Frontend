@@ -1,6 +1,9 @@
 /* Set background color for the entire form container */
 .AgreementForm_Container{
-  margin-left: 19%;
+  margin-left:16%;
+  position: fixed;
+  margin-top:67px;
+  width: 84%;
 }
 .AgreementForm_Container h2{
   text-align: center;
@@ -8,10 +11,11 @@
   margin-bottom: 10px;
   font-size: 20px;
   margin-top: 0;
-  margin-left:0%;
+  margin-left:0;
   box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.2);/* Shadow for depth */
   border-bottom: 2px solid #22b1bb;
-  width: 970px;
+  text-align: center;
+  /* width: 1970px; */
 }
 .form-container {
     background-color: #f7f7f7;  /* Light blue background */

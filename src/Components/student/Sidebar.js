@@ -57,7 +57,7 @@ const Sidebar = () => {
         }
         onClick={(e) => !hasSubmitted && handleNavClick(e)}
       >
-        <img src="/Images/Threeline.png" alt="Profile Icon" className="menu-icon" />
+        <img src="../Images/Threeline.png" alt="Profile Icon" className="menu-icon" />
         <span className="menu-text">Student Profile</span>
       </NavLink>
 

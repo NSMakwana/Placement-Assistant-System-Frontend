@@ -11,7 +11,7 @@ function Sidebar() {
           isActive ? "menu-item active" : "menu-item"
         }
       >
-        <img src="/Images/Threeline.png" alt="Admin Profile Icon" className="menu-icon" />
+        <img src="../Images/Threeline.png" alt="Admin Profile Icon" className="menu-icon" />
         <span className="menu-text">Admin-Profile</span>
       </NavLink>
 
@@ -21,7 +21,7 @@ function Sidebar() {
           isActive ? "menu-item active" : "menu-item"
         }
       >
-        <img src="/Images/Threeline.png" alt="Student Icon" className="menu-icon" />
+        <img src="../Images/Threeline.png" alt="Student Icon" className="menu-icon" />
         <span className="menu-text">User</span>
       </NavLink>
 
@@ -31,7 +31,7 @@ function Sidebar() {
           isActive ? "menu-item active" : "menu-item"
         }
       >
-        <img src="/Images/Threeline.png" alt="Student Icon" className="menu-icon" />
+        <img src="../Images/Threeline.png" alt="Student Icon" className="menu-icon" />
         <span className="menu-text">Student</span>
       </NavLink>
 
@@ -41,7 +41,7 @@ function Sidebar() {
           isActive ? "menu-item active" : "menu-item"
         }
       >
-        <img src="/Images/Threeline.png" alt="Company Icon" className="menu-icon" />
+        <img src="../Images/Threeline.png" alt="Company Icon" className="menu-icon" />
         <span className="menu-text">Company</span>
       </NavLink>
 
@@ -51,7 +51,7 @@ function Sidebar() {
           isActive ? "menu-item active" : "menu-item"
         }
       >
-        <img src="/Images/Threeline.png" alt="Result Icon" className="menu-icon" />
+        <img src="../Images/Threeline.png" alt="Result Icon" className="menu-icon" />
         <span className="menu-text">Result</span>
       </NavLink>
 
@@ -61,7 +61,7 @@ function Sidebar() {
           isActive ? "menu-item active" : "menu-item"
         }
       >
-        <img src="/Images/Threeline.png" alt="Analysis Icon" className="menu-icon" />
+        <img src="../Images/Threeline.png" alt="Analysis Icon" className="menu-icon" />
         <span className="menu-text">Analysis</span>
       </NavLink>
        <NavLink
@@ -70,7 +70,7 @@ function Sidebar() {
           isActive ? "menu-item active" : "menu-item"
         }
       >
-        <img src="/Images/Threeline.png" alt="Analysis Icon" className="menu-icon" />
+        <img src="../Images/Threeline.png" alt="Analysis Icon" className="menu-icon" />
         <span className="menu-text">Reports</span>
       </NavLink>
     </div>
