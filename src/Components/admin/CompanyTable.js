@@ -1,7 +1,7 @@
 import React from "react";
 import "./CompanyTable.css";
 
-const CompanyTable = ({ companies, onView, onEdit, onDelete }) => {
+const CompanyTable = ({ companies, onView, onEdit, onDelete, onNotify, onHideFromStudent   }) => {
   if (!companies || companies.length === 0) {
     return (
       <div className="no-company-message">
@@ -35,6 +35,14 @@ const CompanyTable = ({ companies, onView, onEdit, onDelete }) => {
                   <td>{companies.name}</td>
                   <td>
                     <div className="action">
+                      <button onClick={() => onNotify(companies.id)}>
+                      Notify Students
+                    </button>
+
+                    {/* New Button: Remove from Student Dashboard */}
+                    <button onClick={() => onHideFromStudent(companies.id)}>
+                      Hide from Students
+                    </button>
                       <button onClick={() => onView(companies)}>View</button>
                       <button onClick={() => onEdit(companies)}>Edit</button>
                       <button

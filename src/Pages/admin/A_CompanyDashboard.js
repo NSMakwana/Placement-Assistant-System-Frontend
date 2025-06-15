@@ -54,7 +54,20 @@ const CompanyDashboard = () => {
     const handleOptionClick = (option) => {
         setOption(option); // Set the currently selected option
     }; 
-   
+   const handleNotifyStudents = (companyId) => {
+  fetch(`https://https://placement-assistant-system.vercel.app/api/companies/notify/${companyId}`, {
+    method: 'PATCH',
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      alert("Company is now visible to students!");
+      // Optionally, refresh company list
+    })
+    .catch((err) => {
+      console.error("Notification failed", err);
+    });
+};
+
     const renderResultContent = () => {
         if (Option === "entercompany") {
             return (
@@ -84,6 +97,8 @@ const CompanyDashboard = () => {
                   companies={filteredCompany}
                   onView={handleViewCompany} // Trigger view for selected student
                   onDelete={onDelete}
+                  onNotify={handleNotifyStudents}
+                  onHideFromStudent={handleNotifyStudents} // New prop for hiding from students
             />
             </div>
             

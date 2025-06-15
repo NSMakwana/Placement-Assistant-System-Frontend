@@ -1,6 +1,6 @@
 /* Table Container */
 .company-table-container {
-    width: 110%;
+    width: 140%;
     /* overflow-x: auto; Allows horizontal scrolling if the table is too wide */
     margin-top: 20px;
     margin-left:3%;

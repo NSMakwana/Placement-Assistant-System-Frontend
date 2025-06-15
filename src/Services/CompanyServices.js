@@ -14,6 +14,10 @@ class CompanyServiceClass {
     deleteCompany(id) {
         return axios.delete(`${API_URL}/${id}`); // DeleteCompany by ID
     }
+    getVisibleCompanies() {
+   return axios.get(`${API_URL}/visible`);
+}
+
 }
 
 export const CompanyService = new CompanyServiceClass();

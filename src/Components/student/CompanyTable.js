@@ -35,18 +35,8 @@ const CompanyTable = ({ companies, onView, onEdit, onDelete }) => {
                   <td>{companies.name}</td>
                   <td>
                     <div className="action">
-                      <button onClick={() => onView(companies)}>View</button>
-                      <button onClick={() => onEdit(companies)}>Edit</button>
-                      <button
-                        onClick={() => {
-                          const confirmDelete = window.confirm(
-                            "Are you sure you want to delete this student?"
-                          );
-                          if (confirmDelete) {
-                            onDelete(companies.id); // Pass the student's ID to the onDelete function
-                          }
-                        }}
-                      >
+                      
+                     <button>
                         <img src="/Images/Delete.png" height="12px" width="15px" alt="Delete" />
                       </button>
                     </div>
