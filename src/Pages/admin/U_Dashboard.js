@@ -26,6 +26,8 @@ const [uploadBatch, setUploadBatch] = useState(""); // Batch input
     UserServices.getusers()
       .then((response) => {
         setStudents(response.data);
+        console.log(response.data);
+        setfilteredusers(response.data); // Initialize filtered users with all students
         //setfilteredusers(response.data);
       })
       .catch((error) => console.error("Error fetching students:", error));
@@ -45,8 +47,9 @@ const [uploadBatch, setUploadBatch] = useState(""); // Batch input
     let filtered = [...students]; 
 
     if (key === "clear") {
-      filtered=[];     
-      setfilteredusers(filtered);
+      
+    //window.alert("Filters cleared");
+      setfilteredusers(students);
       console.log(filtered);
       return;
     }

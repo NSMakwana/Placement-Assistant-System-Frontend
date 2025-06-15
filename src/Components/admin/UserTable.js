@@ -21,10 +21,10 @@ const UserTable = ({ users, onDelete }) => {
           <thead>
             <tr>
               <th>Sr. No</th>
-              <th>Roll. No</th>
               <th>Name</th>
               <th>Email</th>
               <th>Password</th>
+              <th>Role</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -38,6 +38,7 @@ const UserTable = ({ users, onDelete }) => {
                   <td>{student.name}</td>
                   <td>{student.email}</td>
                   <td>{student.password}</td>
+                  <td>{student.role}</td>
                   <td>
                     <div className="action">
                      

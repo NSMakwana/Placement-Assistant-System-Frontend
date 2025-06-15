@@ -4,6 +4,7 @@ import "./UserFilters.css";
 
 const Filters = ({ onFilter, downloadCSV, downloadPDF }) => {
  const [search, setSearch] = useState("");
+
   const handleFilterChange = (filterType, value) => {
      if (filterType === "search") setSearch(value);
      onFilter(filterType, value); // Notify parent about the filter change
@@ -51,7 +52,7 @@ const Filters = ({ onFilter, downloadCSV, downloadPDF }) => {
 
       {/* Clear Filters Button */}
       <div className="clear-filter">
-        <button className="clear-btn">
+        <button className="clear-btn" onClick={handleClearFilters}>
           Clear Filters
         </button>
       </div>

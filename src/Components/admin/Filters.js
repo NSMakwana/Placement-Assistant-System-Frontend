@@ -162,7 +162,7 @@ const Filters = ({ onFilter, downloadCSV, downloadPDF }) => {
 
       {/* Clear Filters Button */}
       <div className="clear-filter">
-        <button className="clear-btn" onClick={handleClearFilters}>
+        <button className="clear-btn" onClick={handleClearFilters} >
           Clear Filters
         </button>
       </div>
