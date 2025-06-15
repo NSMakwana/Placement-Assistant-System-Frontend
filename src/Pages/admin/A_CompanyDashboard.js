@@ -64,6 +64,7 @@ const CompanyDashboard = () => {
       // Optionally, refresh company list
     })
     .catch((err) => {
+      console.log(companyId);
       console.error("Notification failed", err);
     });
 };

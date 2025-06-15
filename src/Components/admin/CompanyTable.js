@@ -30,7 +30,7 @@ const CompanyTable = ({ companies, onView, onEdit, onDelete, onNotify, onHideFro
             companies.map((companies,index) => {
               index += 1; // Increment index explicitly
               return (
-                <tr key={companies.id || index}>
+                <tr key={companies._id || index}>
                   <td>{index}</td>
                   <td>{companies.name}</td>
                   <td>
