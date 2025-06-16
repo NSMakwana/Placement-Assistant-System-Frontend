@@ -13,6 +13,20 @@
    /* Lighter background for better contrast */
     
   }
+  .main-section {
+    flex: 1; /* Takes remaining space */
+     /* Allows scrolling within this section */
+    padding: 20px; /* Space inside the section */
+    box-sizing: border-box; /* Include padding in total width */
+    /* Prevent horizontal overflow */
+    background-color: #ffffff; /* White background for clarity */
+    margin-bottom: 0;
+    margin-left:6%;
+    margin-top: 10px;
+    width:100%;
+    max-width: 900px;
+  }
+
   .cheadings {
     /* font-size: 17px; */
     position: fixed;
@@ -41,6 +55,7 @@
   border-bottom: 2px solid #ddd; /* Optional: Adds a separator below the sticky section */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow for clarity */
   width:100%;
+  margin-top: 15px;
   margin-left:20%;
   box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.2); /* Shadow for depth */
   border-bottom: 2px solid #22b1bb;

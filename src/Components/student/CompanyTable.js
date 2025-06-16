@@ -35,9 +35,9 @@ const CompanyTable = ({ companies, onView, onEdit, onDelete }) => {
                   <td>{companies.name}</td>
                   <td>
                     <div className="action">
-                      
+                       <button onClick={() => onView(companies)}>View</button>
                      <button>
-                        <img src="/Images/Delete.png" height="12px" width="15px" alt="Delete" />
+                       Apply
                       </button>
                     </div>
                   </td>

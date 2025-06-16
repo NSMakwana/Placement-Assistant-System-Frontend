@@ -30,17 +30,17 @@ const CompanyTable = ({ companies, onView, onEdit, onDelete, onNotify, onHideFro
             companies.map((companies,index) => {
               index += 1; // Increment index explicitly
               return (
-                <tr key={companies._id || index}>
+                <tr key={companies.id || index}>
                   <td>{index}</td>
                   <td>{companies.name}</td>
                   <td>
                     <div className="action">
-                      <button onClick={() => onNotify(companies._id)}>
+                      <button onClick={() => onNotify(companies.id)}>
                       Notify Students
                     </button>
 
                     {/* New Button: Remove from Student Dashboard */}
-                    <button onClick={() => onHideFromStudent(companies._id)}>
+                    <button onClick={() => onHideFromStudent(companies.id)}>
                       Hide from Students
                     </button>
                       <button onClick={() => onView(companies)}>View</button>

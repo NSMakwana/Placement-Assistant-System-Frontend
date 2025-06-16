@@ -60,6 +60,20 @@ const CompanyDashboard = () => {
   })
     .then((res) => res.json())
     .then((data) => {
+      window.alert("Company is now visible to students!");
+      // Optionally, refresh company list
+    })
+    .catch((err) => {
+      console.log(companyId);
+      console.error("Notification failed", err);
+    });
+};
+ const handleonhideFromStudents = (companyId) => {
+  fetch(`https://placement-assistant-system.onrender.com/api/companies/hide/${companyId}`, {
+    method: 'POST'
+  })
+    .then((res) => res.json())
+    .then((data) => {
       alert("Company is now visible to students!");
       // Optionally, refresh company list
     })
@@ -99,7 +113,7 @@ const CompanyDashboard = () => {
                   onView={handleViewCompany} // Trigger view for selected student
                   onDelete={onDelete}
                   onNotify={handleNotifyStudents}
-                  onHideFromStudent={handleNotifyStudents} // New prop for hiding from students
+                  onHideFromStudent={handleonhideFromStudents} // New prop for hiding from students
             />
             </div>
             

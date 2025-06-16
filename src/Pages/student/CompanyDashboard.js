@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {CompanyService} from "../../Services/CompanyServices";
-import CompanyTable from "../../Components/admin/CompanyTable";
-import CompanyDetails from "../../Components/admin/CompanyDetails";
+import CompanyTable from "../../Components/student/CompanyTable";
+import CompanyDetails from "../../Components/student/CompanyDetails";
 import "./CompanyDashboard.css";
 import StudentServices from "../../Services/StudentServices";
 import axios from "axios";
@@ -49,7 +49,8 @@ const CompanyDashboard = ({}) => {
             <div className="viewcompany">
                  
                  <CompanyTable       
-                  companies={companies}      
+                  companies={companies}   
+                   onView={handleViewCompany}   
                   
             />
             </div>            
@@ -76,7 +77,7 @@ const CompanyDashboard = ({}) => {
             
             <br />
             <button onClick={() => handleOptionClick("viewcompany")}>
-            <img src="/Images/Side errow.png" height="15px" width="15px" /> View Company Details
+            <img src="../Images/Side errow.png" height="15px" width="15px" /> View Company Details
             </button>
             </div>
 

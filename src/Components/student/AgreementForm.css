@@ -1,9 +1,11 @@
 /* Set background color for the entire form container */
 .AgreementForm_Container{
   margin-left:16%;
-  position: fixed;
+  position:absolute;
   margin-top:80px;
   width: 84%;
+  overflow:auto
+
 }
 .AgreementForm_Container h2{
   text-align: center;
@@ -23,6 +25,7 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width:900px;
+    /* overflow-y:scroll; */
   }
   .form-group label {
     font-size: 14px;

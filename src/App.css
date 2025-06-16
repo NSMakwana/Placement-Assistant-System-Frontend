@@ -9,6 +9,7 @@
 .sidebar {
   flex: 0 0 15%; /* Sidebar takes 15% of the width */
   background-color: #f4f4f4;
+  height: 100vh;  
 }
 
 /* Main Content Area */

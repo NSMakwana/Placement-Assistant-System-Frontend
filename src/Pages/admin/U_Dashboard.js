@@ -74,137 +74,58 @@ const [uploadBatch, setUploadBatch] = useState(""); // Batch input
     // ssetfilteredusers(updatedStudents); // Update the filtered list as well
   };
 
-  //downloding filter data
   const downloadFilteredCSV = () => {
-     const headers = [
-      "Sr. No",
-      "Name",
-      "Batch",
-      "Program",
-      "Email",
-      "Phone Number",
-      "Date of Birth",
-      "Gender",
-      "Nationality",
-      "SSC Marks",
-      "SSC Total Marks",
-      "SSC Percentage",
-      "HSC Marks",
-      "HSC Total Marks",
-      "HSC Percentage",
-      "Bachelor Marks",
-      "Bachelor Total Marks",
-      "Bachelor Percentage",
-      "Master Marks",
-      "Master Total Marks",
-      "Master Percentage",
-      "Address Block Number",
-      "Address Building Name",
-      "Address Area",
-      "Address Landmark",
-      "Address Pincode",
-      "Address City",
-      "Address State",
-      "Drops",
-      "Remarks",
-    ];
-  
-    // Format filtered student data as CSV rows
-    const rows = filteredusers.map((student, index) => [
-      index + 1,
-      student.name,
-      student.batch,
-      student.course,
-      student.email,
-      student.phno,
-      student.dob,
-      student.gender,
-      student.nationality,
-      student.ssc.marks,
-      student.ssc.totalMarks,
-      student.ssc.percentage,
-      student.hsc.marks,
-      student.hsc.totalMarks,
-      student.hsc.percentage,
-      student.bachelor.marks,
-      student.bachelor.totalMarks,
-      student.bachelor.percentage,
-      student.master.marks,
-      student.master.totalMarks,
-      student.master.percentage,
-      student.address.blockNum,
-      student.address.buildingName,
-      student.address.area,
-      student.address.landmark,
-      student.address.pincode,
-      student.address.city,
-      student.address.state,
-      student.drops,
-      student.remarks,
-    ]);
-  
-    // Combine headers and rows
-    const csvContent = [
-      headers.join(","), // Join headers with commas
-      ...rows.map((row) => row.join(",")) // Join each row with commas
-    ].join("\n"); // Join all rows with a newline
-  
-    // Create a Blob from the CSV content
-    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-    const url = URL.createObjectURL(blob);
-  
-    // Create a link to trigger the download
-    const link = document.createElement("a");
-    link.setAttribute("href", url);
-    link.setAttribute("download", "filtered_students_details.csv"); // Default file name for download
-    link.click(); // Trigger the download
-  };
-  
+  const headers = ["Sr. No", "Name", "Email", "Password", "Role"];
+
+  const rows = filteredusers.map((user, index) => [
+    index + 1,
+    user.name,
+    user.email,
+    user.password,
+    user.role,
+  ]);
+
+  const csvContent = [
+    headers.join(","), // header row
+    ...rows.map((row) => row.join(",")) // data rows
+  ].join("\n");
+
+  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.setAttribute("href", url);
+  link.setAttribute("download", "filtered_users.csv");
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
+
+  //downloding filter data
   const downloadFilteredPDF = () => {
-    const doc = new jsPDF();
+  const doc = new jsPDF();
 
-    // Add title
-    doc.setFontSize(16);
-    doc.text("Filtered Student Details", 10, 10);
+  doc.setFontSize(16);
+  doc.text("Filtered User Details", 10, 10);
 
-    // Define table headers
-    const headers = [
-      "Sr. No",
-      "Name",
-      "Batch",
-      "Program",
-      "Email",
-      "Phone",
-      "SSC %",
-      "HSC %",
-      "Bachelor %",
-    ];
+  const headers = ["Sr. No", "Name", "Email", "Password", "Role"];
 
-    // Define table rows
-    const rows = filteredusers.map((student, index) => [
-      index + 1,
-      student.name,
-      student.batch,
-      student.course,
-      student.email,
-      student.phno,
-      student.ssc.percentage,
-      student.hsc.percentage,
-      student.bachelor.percentage,
-    ]);
+  const rows = filteredusers.map((user, index) => [
+    index + 1,
+    user.name,
+    user.email,
+    user.password,
+    user.role,
+  ]);
 
-    // Add table to PDF
-    doc.autoTable({
-      head: [headers],
-      body: rows,
-      startY: 20, // Start below the title
-    });
+  doc.autoTable({
+    head: [headers],
+    body: rows,
+    startY: 20,
+  });
 
-    // Save the PDF
-    doc.save("filtered_students_details.pdf");
-  };
+  doc.save("filtered_users.pdf");
+};
 
-  
 
   // Handling student selection for details view
   const handleViewStudent = (student) => {
