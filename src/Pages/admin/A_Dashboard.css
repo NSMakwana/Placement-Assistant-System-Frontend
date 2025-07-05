@@ -1,6 +1,7 @@
 /* Dashboard container */
 .dashboard {
   margin-left: 16.5%; /* Sidebar width alignment */
+  
   width: auto; /* Remaining width for the dashboard */
   padding: 1px; /* Space around the content */
   box-sizing: border-box; /* Include padding in the total width */
@@ -19,6 +20,8 @@
 .viewdetails {
   margin-top:90px; /* Space below navigation buttons */
   /* Use the full available width */
+  position:fixed;
+  margin-left:0%;
   padding: 20px; /* Space inside the section */
   box-sizing: border-box; /* Include padding in total width */
   /* Prevent horizontal overflow */
@@ -27,6 +30,8 @@
   background-color: #ffffff; /* White background for clarity */
   margin-bottom: 0;
   width:100%;
+  max-width: 100%; /* Ensure it doesn't exceed the viewport width */
+  overflow-x: auto; /* Allow horizontal scrolling if content overflows */
   
 }
 .enterdetails {
