@@ -18,10 +18,11 @@
 
 /* View Details Section */
 .viewdetails {
-  margin-top:90px; /* Space below navigation buttons */
+  border: 2px solid black;
+  margin-top:70px; /* Space below navigation buttons */
   /* Use the full available width */
-  position:fixed;
-  margin-left:0%;
+  position:absolute;
+  margin-left:-7%;
   padding: 20px; /* Space inside the section */
   box-sizing: border-box; /* Include padding in total width */
   /* Prevent horizontal overflow */
@@ -30,6 +31,7 @@
   background-color: #ffffff; /* White background for clarity */
   margin-bottom: 0;
   width:100%;
+  height: fit-content;
   max-width: 100%; /* Ensure it doesn't exceed the viewport width */
   overflow-x: auto; /* Allow horizontal scrolling if content overflows */
   
