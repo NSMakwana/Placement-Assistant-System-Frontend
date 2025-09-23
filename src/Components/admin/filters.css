@@ -1,12 +1,13 @@
 .filters {
     display: flex;
-    justify-content: flex-start; /* Align items from the left */
+    justify-content: space-between; /* Align items from the left */
     gap: 5px; /* Space between each filter element */
     flex-wrap: wrap; /* Allows the elements to wrap when there's not enough space */
     align-items: center; /* Align items vertically in the center */
     padding: 10px;   
-    margin-left: 10px;
+
     margin-top:65px;
+    width: 100%; /* Full width of the container */
   }
   
   .filters > div {
@@ -17,11 +18,11 @@
   
   /* Force SSC filter to the next line */
   .filters .ssc-filter {
-    /* flex-basis: 40%; Take full width */
+    flex-basis: 40%;/* Take full width*/
     margin-top: 10px; /* Optional: space between filters */
   }
   .filters .hsc-filter {
-   margin-left:-25.9%;
+   /* margin-left:-25.9%; */
     margin-top: 10px; /* Optional: space between filters */
   }
   .filters .bachelor-filter,.filters .drop-filter,  .filters .clear-filter {

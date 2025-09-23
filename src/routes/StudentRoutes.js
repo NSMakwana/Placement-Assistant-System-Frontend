@@ -6,6 +6,7 @@ import StudentDetailForm from '../Components/StudentDetailForm';
 import CompanyDashboard from '../Components/CompanyDashboard';
 import AnalysisDashboard from '../Components/AnalysisDashboard';
 
+
 const StudentRoutes = () => {
   return (
     <Routes>

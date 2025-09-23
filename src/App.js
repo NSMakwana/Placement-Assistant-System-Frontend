@@ -16,6 +16,7 @@ import A_CompanyDashboard from './Pages/admin/A_CompanyDashboard';
 import A_AnalysisDashboard from './Pages/admin/A_AnalysisDashboard';
 import U_Dashboard from './Pages/admin/U_Dashboard';
 // import PrivateRoute from './routes/PrivateRoute';
+import ManageAdmin from "./Pages/admin/ManageAdmin";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
         <Route path="companydetails" element={<A_CompanyDashboard />} />
         <Route path="result" element={<EnterResultDashboard />} />
         <Route path="analysis" element={<A_AnalysisDashboard />} />
+        <Route path="manage_admin" element={<ManageAdmin />} />
        
          
         </Route>

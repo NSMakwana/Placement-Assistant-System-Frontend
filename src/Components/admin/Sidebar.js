@@ -14,7 +14,7 @@ function Sidebar() {
         <img src="../Images/Threeline.png" alt="Admin Profile Icon" className="menu-icon" />
         <span className="menu-text">Admin-Profile</span>
       </NavLink>
-
+        
       <NavLink
         to="user_dashboard"
         className={({ isActive }) =>
@@ -24,7 +24,19 @@ function Sidebar() {
         <img src="../Images/Threeline.png" alt="Student Icon" className="menu-icon" />
         <span className="menu-text">User</span>
       </NavLink>
-
+      <NavLink
+      to="manage_admin"
+      className={({ isActive }) =>
+        isActive ? "menu-item active" : "menu-item"
+      }
+    >
+      <img
+        src="../Images/Threeline.png"
+        alt="Manage Admin Icon"
+        className="menu-icon"
+      />
+      <span className="menu-text">Manage Admin</span>
+    </NavLink>
       <NavLink
         to="admin_dashboard"
         className={({ isActive }) =>

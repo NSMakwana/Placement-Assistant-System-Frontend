@@ -11,7 +11,7 @@ const AdminDashboardLayout = () => {
       <Sidebar />
       
       {/* Main Content Wrapper */}
-      <div className="main-content" style={{ marginLeft: '-30px' }}>
+      <div className="main-content">
         <Header />
 
         {/* Push content below the fixed header */}

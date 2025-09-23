@@ -1,40 +1,34 @@
+
 /* Dashboard container */
 .dashboard {
-  margin-left: 16.5%; /* Sidebar width alignment */
-  
-  width: auto; /* Remaining width for the dashboard */
+  margin-left:14%; /* Sidebar width alignment */
+  border: 2px dashed red;
+  width:auto; /* Remaining width for the dashboard */
   padding: 1px; /* Space around the content */
   box-sizing: border-box; /* Include padding in the total width */
   /* Prevent horizontal overflow issues */
-  height:25%; /* Full screen height */
+  height:auto; /* Full screen height */
+  /* min-height: 100vh; Ensure it covers the full viewport height */
   display: flex; /* Flexbox for vertical layout */
-  flex-direction:column;
-  /* box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.2);/* Shadow for depth */
-  /* border-bottom: 2px solid #22b1bb; */
+  /* flex-direction:column; */
   font-size:smaller;
- /* Lighter background for better contrast */
   
 }
 
 /* View Details Section */
 .viewdetails {
-  border: 2px solid black;
-  margin-top:70px; /* Space below navigation buttons */
-  /* Use the full available width */
-  position:absolute;
-  margin-left:-7%;
-  padding: 20px; /* Space inside the section */
+  border: 2px dashed blue;
+  margin-top:70px; /* Space below navigation buttons */ 
+  margin-left:0;
   box-sizing: border-box; /* Include padding in total width */
-  /* Prevent horizontal overflow */
-  /* box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2); Shadow for depth */
-  /* border-bottom: 2px solid #22b1bb; */
   background-color: #ffffff; /* White background for clarity */
   margin-bottom: 0;
   width:100%;
-  height: fit-content;
-  max-width: 100%; /* Ensure it doesn't exceed the viewport width */
-  overflow-x: auto; /* Allow horizontal scrolling if content overflows */
+  /* height: fit-content; */
+  /* flex: 1 1 auto; Allow it to grow and shrink */
   
+  
+  /* display: flex; */
 }
 .enterdetails {
   margin-top:190px; /* Space below navigation buttons */
