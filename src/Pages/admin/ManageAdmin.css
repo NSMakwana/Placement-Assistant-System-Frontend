@@ -1,6 +1,8 @@
 .manage-admin {
+  margin-left: 17%;
   padding: 20px;
-  width: 100%;
+  width:auto;
+  margin-top:20px;
 }
 
 .manage-admin h2 {
@@ -14,6 +16,8 @@
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
+  margin-left: 0%;
+  padding-left: 0%;
 }
 
 .add-admin-form input,
@@ -74,4 +78,11 @@
 
 .admin-table .remove-btn:hover {
   background: #c82333;
+}
+.breadcrumb {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 0px;
+  color: #707070; /* Adjust as needed */
+  margin-left: 15px;
 }

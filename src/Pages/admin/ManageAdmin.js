@@ -45,7 +45,8 @@ function ManageAdmin() {
 
   return (
     <div className="manage-admin">
-      <h2>Manage Admins</h2>
+      <div className="breadcrumb">Dashboard &gt; Manage Admins</div>
+     
 
       {/* Add Admin Form */}
       <form className="add-admin-form" onSubmit={addAdmin}>
@@ -75,7 +76,7 @@ function ManageAdmin() {
       <table className="admin-table">
         <thead>
           <tr>
-            <th>ID</th>
+            {/* <th>Sr. no.</th> */}
             <th>Name</th>
             <th>Email</th>
             <th>Role</th>
@@ -85,7 +86,7 @@ function ManageAdmin() {
         <tbody>
           {admins.map((admin) => (
             <tr key={admin.id}>
-              <td>{admin.id}</td>
+              {/* <td>i</td> */}
               <td>{admin.name}</td>
               <td>{admin.email}</td>
               <td>{admin.role}</td>
