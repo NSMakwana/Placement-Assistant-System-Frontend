@@ -7,160 +7,173 @@ const ViewExpense = () => {
   const [selectedBatch, setSelectedBatch] = useState("");
   const [selectedCompany, setSelectedCompany] = useState("");
   const [expenses, setExpenses] = useState([]);
-  const [editingExpense, setEditingExpense] = useState(null);
-  const [editDescription, setEditDescription] = useState("");
-  const [editAmount, setEditAmount] = useState("");
+  const [editingExpenseId, setEditingExpenseId] = useState(null);
+  const [editingItems, setEditingItems] = useState([]);
 
   // Fetch batches on load
   useEffect(() => {
     axios.get("/api/batches")
       .then(res => setBatches(res.data))
-      .catch(err => console.error("Error fetching batches:", err));
+      .catch(err => console.error(err));
   }, []);
 
-  // Fetch companies when batch is selected
+  // Fetch companies by batch
   useEffect(() => {
     if (selectedBatch) {
       axios.get(`/api/companies?batch=${selectedBatch}`)
         .then(res => setCompanies(res.data))
-        .catch(err => console.error("Error fetching companies:", err));
+        .catch(err => console.error(err));
     }
   }, [selectedBatch]);
 
-  // Fetch expenses when company is selected
+  // Fetch expenses by batch & company
   useEffect(() => {
     if (selectedBatch && selectedCompany) {
       axios.get(`/api/expenses?batch=${selectedBatch}&company=${selectedCompany}`)
         .then(res => setExpenses(res.data))
-        .catch(err => console.error("Error fetching expenses:", err));
+        .catch(err => console.error(err));
     }
   }, [selectedBatch, selectedCompany]);
 
-  // Handle Delete
-  const handleDelete = async (expenseId) => {
-    try {
-      await axios.delete(`/api/expenses/${expenseId}`);
-      setExpenses(expenses.filter(exp => exp.id !== expenseId));
-    } catch (err) {
-      console.error("Error deleting expense:", err);
-    }
-  };
-
-  // Handle Edit
+  // Edit handlers
   const handleEdit = (expense) => {
-    setEditingExpense(expense.id);
-    setEditDescription(expense.description);
-    setEditAmount(expense.amount);
+    setEditingExpenseId(expense.id);
+    setEditingItems(expense.expenses.map(item => ({ ...item }))); // clone items
   };
 
-  // Save Edit
-  const handleSave = async () => {
-    try {
-      const updatedExpense = {
-        ...expenses.find(exp => exp.id === editingExpense),
-        description: editDescription,
-        amount: Number(editAmount)
-      };
-      await axios.put(`/api/expenses/${editingExpense}`, updatedExpense);
+  const handleAddItem = () => {
+    setEditingItems([...editingItems, { description: "", amount: "" }]);
+  };
 
-      setExpenses(expenses.map(exp => exp.id === editingExpense ? updatedExpense : exp));
-      setEditingExpense(null);
+  const handleRemoveItem = (index) => {
+    const updated = [...editingItems];
+    updated.splice(index, 1);
+    setEditingItems(updated);
+  };
+
+  const handleChangeItem = (index, field, value) => {
+    const updated = [...editingItems];
+    updated[index][field] = value;
+    setEditingItems(updated);
+  };
+
+  const handleSave = async () => {
+    const total = editingItems.reduce((sum, item) => sum + Number(item.amount || 0), 0);
+    try {
+      await axios.put(`/api/expenses/${editingExpenseId}`, { expenses: editingItems, total });
+      setExpenses(expenses.map(exp => 
+        exp.id === editingExpenseId ? { ...exp, expenses: editingItems, total } : exp
+      ));
+      setEditingExpenseId(null);
+      setEditingItems([]);
     } catch (err) {
-      console.error("Error updating expense:", err);
+      console.error(err);
     }
   };
 
-  // Cancel Edit
   const handleCancel = () => {
-    setEditingExpense(null);
+    setEditingExpenseId(null);
+    setEditingItems([]);
   };
 
-  // Calculate total
-  const total = expenses.reduce((sum, exp) => sum + exp.amount, 0);
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`/api/expenses/${id}`);
+      setExpenses(expenses.filter(exp => exp.id !== id));
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <div style={{ padding: "20px" }}>
       <h2>View Expenses</h2>
 
-      {/* Batch Selection */}
       <label>Batch: </label>
-      <select value={selectedBatch} onChange={(e) => setSelectedBatch(e.target.value)}>
+      <select value={selectedBatch} onChange={e => setSelectedBatch(e.target.value)}>
         <option value="">Select Batch</option>
-        {batches.map((batch) => (
-          <option key={batch} value={batch}>{batch}</option>
-        ))}
+        {batches.map(batch => <option key={batch} value={batch}>{batch}</option>)}
       </select>
 
-      {/* Company Selection */}
       <label style={{ marginLeft: "15px" }}>Company: </label>
-      <select value={selectedCompany} onChange={(e) => setSelectedCompany(e.target.value)}>
+      <select value={selectedCompany} onChange={e => setSelectedCompany(e.target.value)}>
         <option value="">Select Company</option>
-        {companies.map((company) => (
-          <option key={company} value={company}>{company}</option>
-        ))}
+        {companies.map(c => <option key={c} value={c}>{c}</option>)}
       </select>
 
-      {/* Expenses Table */}
-      {expenses.length > 0 ? (
+      {expenses.length > 0 && (
         <table border="1" style={{ marginTop: "20px", width: "100%" }}>
           <thead>
             <tr>
               <th>Description</th>
               <th>Amount (Rs.)</th>
-              <th>Action</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {expenses.map((exp) => (
-              <tr key={exp.id}>
-                <td>
-                  {editingExpense === exp.id ? (
-                    <input
-                      type="text"
-                      value={editDescription}
-                      onChange={(e) => setEditDescription(e.target.value)}
-                    />
-                  ) : (
-                    exp.description
-                  )}
-                </td>
-                <td>
-                  {editingExpense === exp.id ? (
-                    <input
-                      type="number"
-                      value={editAmount}
-                      onChange={(e) => setEditAmount(e.target.value)}
-                    />
-                  ) : (
-                    exp.amount
-                  )}
-                </td>
-                <td>
-                  {editingExpense === exp.id ? (
-                    <>
-                      <button onClick={handleSave}>Save</button>
-                      <button onClick={handleCancel}>Cancel</button>
-                    </>
-                  ) : (
-                    <>
-                      <button onClick={() => handleEdit(exp)}>Edit</button>
-                      <button onClick={() => handleDelete(exp.id)}>Delete</button>
-                    </>
-                  )}
-                </td>
-              </tr>
+            {expenses.map(exp => (
+              <React.Fragment key={exp.id}>
+                {editingExpenseId === exp.id ? (
+                  editingItems.map((item, index) => (
+                    <tr key={index}>
+                      <td>
+                        <input
+                          type="text"
+                          value={item.description}
+                          onChange={e => handleChangeItem(index, "description", e.target.value)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          value={item.amount}
+                          onChange={e => handleChangeItem(index, "amount", e.target.value)}
+                        />
+                      </td>
+                      <td>
+                        {index === 0 && (
+                          <>
+                            <button onClick={handleAddItem}>+ Add Item</button>
+                            <button onClick={handleSave}>Save</button>
+                            <button onClick={handleCancel}>Cancel</button>
+                          </>
+                        )}
+                        {index > 0 && (
+                          <button onClick={() => handleRemoveItem(index)}>Remove</button>
+                        )}
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  exp.expenses.map((item, i) => (
+                    <tr key={i}>
+                      <td>{item.description}</td>
+                      <td>{item.amount}</td>
+                      <td>
+                        {i === 0 && (
+                          <>
+                            <button onClick={() => handleEdit(exp)}>Edit</button>
+                            <button onClick={() => handleDelete(exp.id)}>Delete</button>
+                          </>
+                        )}
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </React.Fragment>
             ))}
           </tbody>
           <tfoot>
             <tr>
               <td><b>Total</b></td>
-              <td colSpan="2"><b>{total} Rs.</b></td>
+              <td colSpan="2">
+                <b>{expenses.reduce((sum, exp) => sum + exp.total, 0)} Rs.</b>
+              </td>
             </tr>
           </tfoot>
         </table>
-      ) : (
-        selectedCompany && <p>No expenses found for this company.</p>
       )}
+      {selectedCompany && expenses.length === 0 && <p>No expenses found.</p>}
     </div>
   );
 };
