@@ -30,7 +30,7 @@ function LoginPage() {
         localStorage.setItem("IsLoggedIn",true);
         alert("Login successful! Redirecting to dashboard...");
         const StoredUser=JSON.parse(localStorage.getItem("user"));
-        if(StoredUser.role==="admin")
+        if(StoredUser.role==="Admin")
           navigate("/admin/admin_dashboard"); // Redirect to dashboard
         if(StoredUser.role==="student")
           navigate("/student/dashboard"); // Redirect to dashboard

@@ -1,30 +1,36 @@
-/* Container styling */
+/* Main container */
 .expense-container {
-  max-width: 900px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #f9f9f9;
+  max-width: auto;
+  /* margin: 20px auto; */
+  margin-left: 17%;
+  padding: 20px 30px;
+  background-color: #fdfdfd;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  font-family: Arial, sans-serif;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Heading */
 .expense-container h2 {
   text-align: center;
-  margin-bottom: 20px;
   color: #333;
+  margin-bottom: 20px;
+}
+
+.expense-container h3 {
+  margin-top: 15px;
+  color: #444;
 }
 
 /* Buttons */
 .expense-container button {
   background-color: #007bff;
   color: white;
-  padding: 6px 12px;
   border: none;
+  padding: 6px 14px;
   border-radius: 5px;
-  margin: 5px 0;
   cursor: pointer;
+  margin: 5px 5px 5px 0;
   transition: 0.3s;
 }
 
@@ -32,7 +38,7 @@
   background-color: #0056b3;
 }
 
-/* Select and input */
+/* Select and file inputs */
 .expense-container select,
 .expense-container input[type="text"],
 .expense-container input[type="number"],
@@ -44,7 +50,7 @@
   min-width: 150px;
 }
 
-/* Expense row */
+/* Expense rows */
 .expense-row {
   display: flex;
   align-items: center;
@@ -53,9 +59,10 @@
 
 .expense-row input {
   margin-right: 10px;
+  flex: 1;
 }
 
-/* Table */
+/* Table styling */
 .expense-container table {
   width: 100%;
   border-collapse: collapse;
@@ -75,28 +82,27 @@
 }
 
 .expense-container table tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: #f9f9f9;
 }
 
 .expense-container table tr:hover {
-  background-color: #ddd;
+  background-color: #f1f1f1;
 }
 
-/* Footer row for total */
+/* Footer total row */
 .expense-container table tfoot td {
   font-weight: bold;
-  background-color: #f1f1f1;
+  background-color: #f2f2f2;
 }
 
 /* Edit mode inputs */
 .edit-input {
-  width: 90%;
   padding: 4px 6px;
   border-radius: 4px;
   border: 1px solid #ccc;
 }
 
-/* Responsive for small screens */
+/* Responsive design */
 @media (max-width: 600px) {
   .expense-row {
     flex-direction: column;
