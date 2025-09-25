@@ -69,6 +69,19 @@ function Sidebar() {
             />
             <span className="menu-text">Preplacement Talk</span>
           </NavLink>
+           <NavLink
+            to="expense"
+            className={({ isActive }) =>
+              isActive ? "menu-item active" : "menu-item"
+            }
+          >
+            <img
+              src="../Images/Threeline.png"
+              alt="Preplacement_talk Icon"
+              className="menu-icon"
+            />
+            <span className="menu-text">Manage Expense</span>
+          </NavLink>
       <NavLink
         to="result"
         className={({ isActive }) =>
