@@ -17,6 +17,7 @@ import A_AnalysisDashboard from './Pages/admin/A_AnalysisDashboard';
 import U_Dashboard from './Pages/admin/U_Dashboard';
 // import PrivateRoute from './routes/PrivateRoute';
 import ManageAdmin from "./Pages/admin/ManageAdmin";
+import PreplacementTalk from './Pages/admin/Preplacement_talk';
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
         <Route path="result" element={<EnterResultDashboard />} />
         <Route path="analysis" element={<A_AnalysisDashboard />} />
         <Route path="manage_admin" element={<ManageAdmin />} />
+        <Route path="preplacement_talk" element={<PreplacementTalk />} />
        
          
         </Route>
