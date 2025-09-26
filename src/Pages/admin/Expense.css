@@ -3,8 +3,9 @@
   max-width: auto;
   /* margin: 20px auto; */
   margin-left: 17%;
+  margin-top: 5%;
   padding: 20px 30px;
-  background-color: #fdfdfd;
+  /* background-color: #ac3636; */
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0,0,0,0.1);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -119,4 +120,33 @@
   .expense-container table td {
     font-size: 14px;
   }
+}
+.expense-item-inline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.expense-item-inline input[type="text"] {
+  flex: 2;
+  padding: 5px;
+}
+
+.expense-item-inline input[type="number"] {
+  flex: 1;
+  padding: 5px;
+}
+
+.expense-item-inline button {
+  padding: 5px 10px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.expense-item-inline button:hover {
+  background-color: #d32f2f;
 }

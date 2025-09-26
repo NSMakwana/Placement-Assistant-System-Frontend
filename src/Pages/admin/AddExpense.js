@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./Expense.css";
 
 function AddExpense({ prefillData, onUpdate }) {
   const [batches, setBatches] = useState([]);
@@ -7,12 +8,14 @@ function AddExpense({ prefillData, onUpdate }) {
   const [selectedBatch, setSelectedBatch] = useState(prefillData?.batch || "");
   const [selectedCompany, setSelectedCompany] = useState(prefillData?.companyName || "");
   const [billFile, setBillFile] = useState(null);
-  const [expenses, setExpenses] = useState(prefillData?.expenses || [{ description: "", amount: "" }]);
+  const [expenses, setExpenses] = useState(
+    prefillData?.expenses || [{ description: "", amount: "" }]
+  );
   const [total, setTotal] = useState(prefillData?.total || 0);
 
-  // Fetch batches from CompanyController
+  // Fetch batches from backend
   useEffect(() => {
-    axios.get("http://localhost:8080/api/companies")
+    axios.get("https://placement-assistant-system.onrender.com/api/companies")
       .then(res => {
         const uniqueBatches = [...new Set(res.data.map(c => c.batch))];
         setBatches(uniqueBatches);
@@ -23,7 +26,7 @@ function AddExpense({ prefillData, onUpdate }) {
   // Fetch companies for selected batch
   useEffect(() => {
     if (selectedBatch) {
-      axios.get(`http://localhost:8080/api/companies/batch/${selectedBatch}`)
+      axios.get(`https://placement-assistant-system.onrender.com/api/companies/batch/${selectedBatch}`)
         .then(res => setCompanies(res.data))
         .catch(err => console.error(err));
     }
@@ -41,8 +44,12 @@ function AddExpense({ prefillData, onUpdate }) {
     setExpenses(newExpenses);
   };
 
-  const addExpenseField = () => setExpenses([...expenses, { description: "", amount: "" }]);
-  const removeExpenseField = (index) => setExpenses(expenses.filter((_, i) => i !== index));
+  const addExpenseField = () =>
+    setExpenses([...expenses, { description: "", amount: "" }]);
+
+  const removeExpenseField = (index) => {
+    setExpenses(expenses.filter((_, i) => i !== index));
+  };
 
   const handleSubmit = async () => {
     if (!selectedBatch || !selectedCompany) {
@@ -50,23 +57,42 @@ function AddExpense({ prefillData, onUpdate }) {
       return;
     }
 
-    const formData = new FormData();
-    formData.append("batch", selectedBatch);
-    formData.append("companyName", selectedCompany);
-    if (billFile) formData.append("billFile", billFile);
-    formData.append("expenses", JSON.stringify(expenses));
-    formData.append("total", total);
-
     try {
+      const formData = new FormData();
+      formData.append("batch", selectedBatch);
+      formData.append("companyName", selectedCompany);
+
+      if (billFile) {
+        formData.append("billFile", billFile);
+      } else if (!prefillData) {
+        alert("Please upload a bill file");
+        return;
+      }
+
+      // Correctly format expenses: stringified JSON with numeric amounts
+      const expensesFormatted = expenses.map(exp => ({
+        description: exp.description,
+        amount: Number(exp.amount)
+      }));
+      formData.append("expenses", JSON.stringify(expensesFormatted));
+      formData.append("total", total);
+
       if (prefillData) {
-        await axios.put(`http://localhost:8080/api/expenses/${prefillData.id}`, {
-          expenses,
-          total
-        });
+        // Update existing expense
+        await axios.put(
+          `https://placement-assistant-system.onrender.com/api/expenses/${prefillData.id}`,
+          {
+            expenses: expensesFormatted,
+            total
+          }
+        );
       } else {
-        await axios.post("http://localhost:8080/api/expenses/upload", formData, {
-          headers: { "Content-Type": "multipart/form-data" }
-        });
+        // Create new expense
+        await axios.post(
+          "https://placement-assistant-system.onrender.com/api/expenses/upload",
+          formData,
+          { headers: { "Content-Type": "multipart/form-data" } }
+        );
       }
 
       alert("Expense saved! Total: Rs." + total);
@@ -81,10 +107,12 @@ function AddExpense({ prefillData, onUpdate }) {
     <div className="add-expense">
       <div>
         <label>Batch:</label>
-        <select value={selectedBatch} onChange={e => setSelectedBatch(e.target.value)}>
-          <option value="">Select Batch</option>
-          {batches.map(batch => <option key={batch} value={batch}>{batch}</option>)}
-        </select>
+        <input
+          type="text"
+          value={selectedBatch}
+          onChange={e => setSelectedBatch(e.target.value)}
+          placeholder="Enter batch"
+        />
       </div>
 
       <div>
@@ -103,30 +131,36 @@ function AddExpense({ prefillData, onUpdate }) {
       <div className="expense-items">
         <h3>Expenses</h3>
         {expenses.map((exp, index) => (
-          <div key={index} className="expense-item">
+          <div key={index} className="expense-item-inline">
             <input
               type="text"
               placeholder="Description"
               value={exp.description}
               onChange={e => handleExpenseChange(index, "description", e.target.value)}
+              required
             />
             <input
               type="number"
               placeholder="Amount"
               value={exp.amount}
               onChange={e => handleExpenseChange(index, "amount", e.target.value)}
+              required
             />
-            <button onClick={() => removeExpenseField(index)}>Remove</button>
+            <button type="button" onClick={() => removeExpenseField(index)}>Remove</button>
           </div>
         ))}
-        <button onClick={addExpenseField}>Add More</button>
+        <button type="button" className="add-expense-btn" onClick={addExpenseField}>
+          Add More
+        </button>
       </div>
 
-      <div className="total-display">a
+      <div className="total-display">
         <strong>Total: Rs. {total}</strong>
       </div>
 
-      <button onClick={handleSubmit}>Save Expense</button>
+      <button onClick={handleSubmit} className="add-expense-btn">
+        Save Expense
+      </button>
     </div>
   );
 }

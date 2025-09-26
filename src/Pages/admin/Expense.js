@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import AddExpense from "./AddExpense";
 import ViewExpense from "./ViewExpense";
+import "./Expense.css";
 
 function Expense() {
   const [view, setView] = useState("add"); // "add" or "view"
 
   return (
-    <div>
+    <div className="expense-container">
       <h2>Expense Management</h2>
 
       <div style={{ marginBottom: "20px" }}>

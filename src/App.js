@@ -18,7 +18,7 @@ import U_Dashboard from './Pages/admin/U_Dashboard';
 // import PrivateRoute from './routes/PrivateRoute';
 import ManageAdmin from "./Pages/admin/ManageAdmin";
 import PreplacementTalk from './Pages/admin/Preplacement_talk';
-import Expense from './Pages/admin/ViewExpense';
+import Expense from './Pages/admin/Expense';
 
 function App() {
   return (

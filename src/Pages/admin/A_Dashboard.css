@@ -1,10 +1,10 @@
 
 /* Dashboard container */
 .dashboard {
-  margin-left:14%; /* Sidebar width alignment */
+  margin-left:17%; /* Sidebar width alignment */
   border: 2px dashed red;
   width:auto; /* Remaining width for the dashboard */
-  padding: 1px; /* Space around the content */
+   /* Space around the content */
   box-sizing: border-box; /* Include padding in the total width */
   /* Prevent horizontal overflow issues */
   height:auto; /* Full screen height */
@@ -19,13 +19,14 @@
 .viewdetails {
   border: 2px dashed blue;
   margin-top:70px; /* Space below navigation buttons */ 
-  margin-left:0;
+  margin-left:-5%;
+  padding: 0%;
   box-sizing: border-box; /* Include padding in total width */
   background-color: #ffffff; /* White background for clarity */
   margin-bottom: 0;
-  width:100%;
+  width:auto;
   /* height: fit-content; */
-  /* flex: 1 1 auto; Allow it to grow and shrink */
+  flex: 1 1 auto; 
   
   
   /* display: flex; */
@@ -69,7 +70,7 @@
   top:64px; /* Sticks to the top of the viewport */
   /* Ensures it stays on top of other elements */
   background-color: white; /* Matches the background to avoid transparency */
-  padding: 10px; /* Adds padding for a clean look */
+  /* padding: 10px; Adds padding for a clean look */
   border-bottom: 2px solid #ddd; /* Optional: Adds a separator below the sticky section */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow for clarity */
   width:100%;

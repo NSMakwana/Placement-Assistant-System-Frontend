@@ -12,7 +12,7 @@ function ViewExpense() {
 
   // Fetch batches from CompanyController
   useEffect(() => {
-    axios.get("http://localhost:8080/api/companies")
+    axios.get("https://placement-assistant-system.onrender.com/api/companies")
       .then(res => {
         const uniqueBatches = [...new Set(res.data.map(c => c.batch))];
         setBatches(uniqueBatches);
@@ -23,7 +23,7 @@ function ViewExpense() {
   // Fetch companies for selected batch
   useEffect(() => {
     if (selectedBatch) {
-      axios.get(`http://localhost:8080/api/companies/batch/${selectedBatch}`)
+      axios.get(`https://placement-assistant-system.onrender.com/api/companies/batch/${selectedBatch}`)
         .then(res => setCompanies(res.data))
         .catch(err => console.error(err));
     }
@@ -32,7 +32,7 @@ function ViewExpense() {
   // Fetch expenses for selected batch & company
   const fetchExpenses = () => {
     if (selectedBatch && selectedCompany) {
-      axios.get(`http://localhost:8080/api/expenses/${selectedBatch}/${selectedCompany}`)
+      axios.get(`https://placement-assistant-system.onrender.com/api/expenses/${selectedBatch}/${selectedCompany}`)
         .then(res => setExpensesData(res.data))
         .catch(err => console.error(err));
     }
@@ -41,7 +41,7 @@ function ViewExpense() {
   // Delete expense
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this expense?")) {
-      axios.delete(`http://localhost:8080/api/expenses/${id}`)
+      axios.delete(`https://placement-assistant-system.onrender.com/api/expenses/${id}`)
         .then(() => fetchExpenses())
         .catch(err => console.error(err));
     }
@@ -51,13 +51,16 @@ function ViewExpense() {
     <div className="view-expense">
       <h2>View Expenses</h2>
 
-      <div className="form-group">
+      <div>
         <label>Batch:</label>
-        <select value={selectedBatch} onChange={e => setSelectedBatch(e.target.value)}>
-          <option value="">Select Batch</option>
-          {batches.map(batch => <option key={batch} value={batch}>{batch}</option>)}
-        </select>
+        <input
+          type="text"
+          value={selectedBatch}
+          onChange={e => setSelectedBatch(e.target.value)}
+          placeholder="Enter batch"
+        />
       </div>
+
 
       <div className="form-group">
         <label>Company:</label>
