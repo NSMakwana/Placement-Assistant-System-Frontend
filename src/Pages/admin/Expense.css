@@ -25,7 +25,7 @@
 
 /* Buttons */
 .expense-container button {
-  background-color: #007bff;
+  background-color: #14777eff;
   color: white;
   border: none;
   padding: 6px 14px;
@@ -36,7 +36,7 @@
 }
 
 .expense-container button:hover {
-  background-color: #0056b3;
+  background-color:  #14777eff;
 }
 
 /* Select and file inputs */
@@ -78,7 +78,7 @@
 }
 
 .expense-container table th {
-  background-color: #007bff;
+  background-color:  #14777eff;
   color: white;
 }
 

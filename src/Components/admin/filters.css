@@ -18,7 +18,7 @@
   padding: 8px 10px;
   border: 1px solid #ccc;
   border-radius: 6px;
-  font-size: 14px;
+  font-size: 16px;
   min-width: 120px;
   background-color: #fafafa;
 }
@@ -26,7 +26,7 @@
 /* Buttons */
 .filters .clear-btn {
   padding: 8px 16px;
-  background-color: #22b1bb;
+  background-color:#14777eff;
   color: white;
   border: none;
   border-radius: 6px;
@@ -35,7 +35,7 @@
 }
 
 .filters .clear-btn:hover {
-  background-color: #078790;
+  background-color:#14777eff;
 }
 
 .filters .download-btn {
@@ -44,15 +44,15 @@
   gap: 6px;
   padding: 8px 12px;
   font-size: 14px;
-  border: 1px solid #22b1bb;
+  border: 1px solid #14777eff;
   border-radius: 6px;
   background-color: white;
-  color: #22b1bb;
+  color:black;
   cursor: pointer;
   transition: 0.2s;
 }
 
 .filters .download-btn:hover {
-  background-color: #22b1bb;
+  background-color:#14777eff;
   color: white;
 }

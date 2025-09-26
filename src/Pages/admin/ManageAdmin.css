@@ -29,7 +29,7 @@
 
 .add-admin-form button {
   padding: 8px 12px;
-  background: #28a745;
+  background:rgb(30, 170, 180);
   border: none;
   color: white;
   border-radius: 4px;
@@ -37,7 +37,7 @@
 }
 
 .add-admin-form button:hover {
-  background: #218838;
+  background:#14777eff;
 }
 
 /* Table */

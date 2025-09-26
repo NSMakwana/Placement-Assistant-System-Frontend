@@ -15,7 +15,7 @@ function Expense() {
           onClick={() => setView("add")}
           style={{
             marginRight: "10px",
-            backgroundColor: view === "add" ? "#4CAF50" : "#ddd",
+            backgroundColor: view === "add" ? " #14777eff" : "#ddd",
             color: view === "add" ? "white" : "black",
             padding: "8px 16px",
             border: "none",
@@ -28,7 +28,7 @@ function Expense() {
         <button
           onClick={() => setView("view")}
           style={{
-            backgroundColor: view === "view" ? "#4CAF50" : "#ddd",
+            backgroundColor: view === "view" ? " #14777eff" : "#ddd",
             color: view === "view" ? "white" : "black",
             padding: "8px 16px",
             border: "none",
