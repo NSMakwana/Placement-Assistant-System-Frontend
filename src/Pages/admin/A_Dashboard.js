@@ -367,7 +367,9 @@ const handleStudentUpload = async () => {
       } else {
         return (
           <div className="viewdetails">
+            <div className="temp">
             <Filters onFilter={handleFilter} downloadCSV={downloadFilteredCSV} downloadPDF={ downloadFilteredPDF} />
+            </div>
             <StudentTable
               students={filteredStudents}
               onView={handleViewStudent} // Trigger view for selected student
@@ -398,6 +400,7 @@ const handleStudentUpload = async () => {
           <div className="breadcrumb">
           Dashboard &gt; Student
         </div>
+        
             <button onClick={() => handleOptionClick("EnterDetails")}>
               <img src="/Images/Side errow.png" height="15px" width="15px" /> Enter Details
             </button>

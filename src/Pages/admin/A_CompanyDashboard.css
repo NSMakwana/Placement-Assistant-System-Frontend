@@ -83,6 +83,7 @@
   
   .entercompany{
     margin-top:200px; /* Space below navigation buttons */
+
     /* Use the full available width */
     padding: 5px; /* Space inside the section */
     box-sizing: border-box; /* Include padding in total width */
@@ -91,8 +92,8 @@
     /* border-bottom: 2px solid #22b1bb; */
     background-color: #ffffff; /* White background for clarity */
     margin-bottom: 0;
-    margin-left:10%;
+    margin-left:-5%;
     width:100%;
-    max-width: 900px;
+    max-width: 800px;
     /* position:fixed; */
   }

@@ -87,7 +87,7 @@ const CompanyDashboard = () => {
         if (Option === "entercompany") {
             return (
                 <div className="entercompany">
-                    <h3 className="cheadings">Company Details</h3>
+                     {/* <h3 className="cheadings">Company Details</h3> */}
                     <CompanyDeatilsForm />
                 </div>
             );
