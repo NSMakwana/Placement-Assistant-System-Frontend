@@ -19,7 +19,8 @@ import U_Dashboard from './Pages/admin/U_Dashboard';
 import ManageAdmin from "./Pages/admin/ManageAdmin";
 import PreplacementTalk from './Pages/admin/Preplacement_talk';
 import Expense from './Pages/admin/Expense';
-import CVBuilder from './Pages/student/CVBuilder';
+import CVBuilder from "./Pages/student/CVBuilder";
+import CVTemplate1 from "./Pages/student/templates/CVTemplate1";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
         <Route path="company" element={<CompanyDashboard />} />
         <Route path="analysis" element={<AnalysisDashboard />} />
         <Route path="cvbuilder" element={<CVBuilder />} />
+        <Route path="cvbuilder/template1" element={<CVTemplate1 />} />
 
 </Route>
         

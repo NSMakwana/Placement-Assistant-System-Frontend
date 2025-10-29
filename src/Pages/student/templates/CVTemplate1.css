@@ -1,0 +1,223 @@
+/* src/pages/student/templates/CVTemplate1.css */
+
+/* Page layout for the builder (form + preview) */
+.cvbuilder-page {
+  background: #f5f6f7;
+  min-height: 100vh;
+}
+
+.cvbuilder-container {
+  display: flex;
+  gap: 28px;
+  max-width: 1200px;
+  margin: 28px auto;
+  padding: 8px;
+}
+
+/* Left form column */
+.cv-form-column {
+  width: 360px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  height: calc(100vh - 80px);
+  overflow: auto;
+}
+.cv-form-column h2 {
+  margin-top: 0;
+}
+.cv-form-column label {
+  display:block;
+  margin-top:12px;
+  font-weight:600;
+  color:#333;
+}
+.cv-form-column input[type="text"],
+.cv-form-column input[type="email"],
+.cv-form-column input[type="file"],
+.cv-form-column textarea {
+  width:100%;
+  padding:10px 12px;
+  border-radius:6px;
+  border:1px solid #e0e0e0;
+  margin-top:6px;
+  box-sizing:border-box;
+  font-size:14px;
+}
+
+/* Right preview column */
+.cv-preview-column {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding-top: 4px;
+  padding-bottom: 40px;
+  overflow: auto;
+}
+
+/* The actual CV card */
+.cv-template-wrap {
+  display: flex;
+  width: 820px;
+  background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* left dark area */
+.cv-left-dark {
+  width: 280px;
+  background: #3f3f43; /* dark grey */
+  color: #f2f2f2;
+  padding: 32px 22px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* profile circle */
+.cv-photo-wrap {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.cv-photo-circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 6px solid rgba(255,255,255,0.1);
+  box-shadow: 0 3px 12px rgba(0,0,0,0.25);
+}
+.cv-photo-placeholder {
+  width: 120px;
+  height: 120px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#575758;
+  color:#ddd;
+  font-weight:600;
+}
+
+/* left headings and text */
+.left-heading {
+  font-size: 13px;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  color:#e6e6e6;
+}
+.left-text {
+  font-size: 13px;
+  color: #d7d7d7;
+  line-height: 1.45;
+  margin:0;
+}
+.left-list {
+  margin:6px 0 0 16px;
+  color:#d7d7d7;
+  font-size:13px;
+}
+.divider-left {
+  height:1px;
+  background: rgba(255,255,255,0.05);
+  margin: 4px 0;
+}
+
+/* right white area */
+.cv-right-white {
+  flex:1;
+  padding: 32px 36px;
+  background: #ffffff;
+  color: #222;
+  box-sizing: border-box;
+}
+
+/* name and contact row */
+.cv-name-row {
+  display:flex;
+  justify-content: space-between;
+  align-items:flex-start;
+  gap:16px;
+}
+.cv-name-block {
+  flex:1;
+}
+.cv-name {
+  font-family: 'Montserrat', 'Poppins', sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  color: #2b2b2b;
+  letter-spacing: 1px;
+}
+.cv-subtitle {
+  margin-top:6px;
+  color:#7a7a7a;
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:0.6px;
+}
+
+.cv-contact-block {
+  width: 240px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  align-items:flex-end;
+}
+.contact-item {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#555;
+  font-size:13px;
+}
+.contact-icon {
+  color:#2b2b2b;
+  font-size:14px;
+}
+
+/* thin rule */
+.thin-hr {
+  border: none;
+  border-top: 1px solid #e6e6e6;
+  margin: 18px 0;
+}
+
+/* sections */
+.cv-section {
+  margin-bottom: 18px;
+}
+.section-title {
+  font-size:18px;
+  color:#222;
+  margin:0 0 10px 0;
+  font-weight:700;
+}
+.timeline { margin-left:0; }
+.timeline-item { display:flex; gap:12px; margin-bottom:10px; align-items:flex-start; }
+.timeline-text { color:#333; margin:0 0 8px 0; line-height:1.5; }
+
+/* education/skills */
+.standard-text { margin:6px 0; color:#333; }
+.skills-list { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+.skill-pill { background:#f2f2f2; padding:6px 10px; border-radius:6px; font-size:13px; color:#333; }
+
+/* languages */
+.languages-grid { margin-top:8px; display:flex; flex-direction:column; gap:8px; }
+.language-row { display:flex; align-items:center; gap:12px; }
+.language-name { min-width:120px; color:#555; font-size:13px; }
+.language-bar { background:#eee; height:8px; border-radius:4px; width:100%; }
+.language-level { background:#777; height:100%; border-radius:4px; }
+
+/* small responsive adjustments */
+@media (max-width: 1000px) {
+  .cvbuilder-container { flex-direction: column; align-items: center; padding: 16px; }
+  .cv-form-column { width: auto; max-width: 900px; height: auto; }
+  .cv-template-wrap { width: 100%; }
+  .cv-preview-column { padding: 16px 0; }
+}
