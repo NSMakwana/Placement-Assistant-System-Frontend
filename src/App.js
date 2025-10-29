@@ -19,6 +19,7 @@ import U_Dashboard from './Pages/admin/U_Dashboard';
 import ManageAdmin from "./Pages/admin/ManageAdmin";
 import PreplacementTalk from './Pages/admin/Preplacement_talk';
 import Expense from './Pages/admin/Expense';
+import CVBuilder from './Pages/student/CVBuilder';
 
 function App() {
   return (
@@ -36,6 +37,8 @@ function App() {
         <Route path="studentdetail" element={<StudentDetailForm />} />
         <Route path="company" element={<CompanyDashboard />} />
         <Route path="analysis" element={<AnalysisDashboard />} />
+        <Route path="cvbuilder" element={<CVBuilder />} />
+
 </Route>
         
 
@@ -49,8 +52,7 @@ function App() {
         <Route path="analysis" element={<A_AnalysisDashboard />} />
         <Route path="manage_admin" element={<ManageAdmin />} />
         <Route path="preplacement_talk" element={<PreplacementTalk />} />
-        <Route path="expense" element={<Expense/>} />
-       
+        <Route path="expense" element={<Expense/>} />   
          
         </Route>
       

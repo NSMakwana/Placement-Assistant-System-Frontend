@@ -93,6 +93,17 @@ const Sidebar = () => {
         <img src="../Images/Threeline.png" alt="Analysis Icon" className="menu-icon" />
         <span className="menu-text">Analysis</span>
       </NavLink>
+
+      <NavLink
+        to="cvbuilder"
+        className={({ isActive }) =>
+          isActive ? "menu-item active" : "menu-item"
+        }
+      >
+        <img src="../Images/Threeline.png" alt="CV Icon" className="menu-icon" />
+        <span className="menu-text">CV Builder</span>
+      </NavLink>
+
     </div>
   );
 };
