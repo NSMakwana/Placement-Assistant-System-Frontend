@@ -1,21 +1,66 @@
 .analysis-dashboard {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    
-  }
-  
-  .analysis-dashboard canvas {
-    max-width: 300px; /* Limit the chart's width */
-    max-height: 300px; /* Limit the chart's height */
-    width: 100%; /* Responsive width */
-    height: auto; /* Maintain aspect ratio */
-    /* border:1px solid black; */
-  }
-  .analysis-filters{
-    margin-top: 10px;
-    margin-left: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  gap: 40px; /* Space between filter and charts */
+}
 
+/* Filter section */
+.analysis-filters {
+  width: 90%; /* Use most of the page width */
+  margin-top: 10px;
+  margin-left: 0; /* Align with dashboard */
+  padding: 10px 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Chart sections */
+.chart-section {
+  width: 90%; /* Full width of dashboard */
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Chart titles */
+.chart-section h3 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+}
+
+/* Pie chart canvas */
+.analysis-dashboard canvas {
+  max-width: 400px; /* Optional max width */
+  width: 100%; /* Responsive */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Bar chart container */
+.chart-section .recharts-wrapper {
+  width: 100%;
+  height: 400px; /* Fixed height for bar chart */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .analysis-filters, .chart-section {
+    width: 95%;
+    padding: 15px;
   }
+  .analysis-dashboard canvas {
+    max-width: 100%;
+  }
+}
