@@ -1,11 +1,10 @@
-// src/pages/student/templates/CVTemplate1.jsx
+// src/Pages/Student/templates/CVTemplate1.jsx
 import React from "react";
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 
 export default function CVTemplate1({ data, photoUrl }) {
   if (!data) return null;
 
-  // helpers
   const listFromNewlines = (s) =>
     (s || "")
       .split("\n")
@@ -17,9 +16,11 @@ export default function CVTemplate1({ data, photoUrl }) {
   const education = listFromNewlines(data.education);
   const experience = listFromNewlines(data.experience);
   const references = listFromNewlines(data.references);
+  const hobbies = (data.hobbies || "").split(",").map((h) => h.trim()).filter(Boolean);
 
   return (
     <div className="cv-template-wrap">
+      {/* Left dark panel */}
       <div className="cv-left-dark">
         <div className="cv-photo-wrap">
           {photoUrl ? (
@@ -37,38 +38,27 @@ export default function CVTemplate1({ data, photoUrl }) {
         <div className="divider-left" />
 
         <div className="cv-left-section">
-          <h4 className="left-heading">LINKS</h4>
-          <p className="left-text">
-            {/* you can expand to clickable links */}
-            {data.email}
-          </p>
+          <h4 className="left-heading">HOBBIES</h4>
+          <ul className="left-list">
+            {hobbies.map((h, i) => (
+              <li key={i}>{h}</li>
+            ))}
+          </ul>
         </div>
 
         <div className="divider-left" />
 
         <div className="cv-left-section">
-          <h4 className="left-heading">REFERENCE</h4>
+          <h4 className="left-heading">REFERENCES</h4>
           {references.map((r, i) => (
             <p className="left-text" key={i}>
               {r}
             </p>
           ))}
         </div>
-
-        <div className="divider-left" />
-
-        <div className="cv-left-section">
-          <h4 className="left-heading">HOBBIES</h4>
-          <ul className="left-list">
-            <li>Hacking</li>
-            <li>Coding</li>
-            <li>Reading Cybersecurity Journals</li>
-            <li>Chess</li>
-            <li>Basketball</li>
-          </ul>
-        </div>
       </div>
 
+      {/* Right white panel */}
       <div className="cv-right-white">
         <div className="cv-name-row">
           <div className="cv-name-block">
@@ -92,26 +82,22 @@ export default function CVTemplate1({ data, photoUrl }) {
           </div>
         </div>
 
-        <hr className="thin-hr" />
+       
 
         <section className="cv-section">
-          <h3 className="section-title">WORK EXPERIENCE</h3>
-          <div className="timeline">
-            {experience.map((e, i) => (
-              <div className="timeline-item" key={i}>
-                <div className="timeline-left">
-                  {/* If you want to split company/date, parse accordingly; here we show the line */}
-                </div>
-                <div className="timeline-right">
-                  <p className="timeline-text">• {e}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <h3 className="section-title">EXPERIENCE</h3>
+           <hr className="thin-hr" />
+          {experience.map((e, i) => (
+            <p key={i} className="standard-text">
+              • {e}
+            </p>
+          ))}
         </section>
 
         <section className="cv-section">
           <h3 className="section-title">EDUCATION</h3>
+           <hr className="thin-hr" />
+
           {education.map((ed, i) => (
             <p key={i} className="standard-text">
               • {ed}
@@ -121,27 +107,22 @@ export default function CVTemplate1({ data, photoUrl }) {
 
         <section className="cv-section">
           <h3 className="section-title">SKILLS</h3>
-          <div className="skills-list">
-            {skills.map((s, i) => (
-              <span className="skill-pill" key={i}>
-                {s}
-              </span>
-            ))}
-          </div>
+           <hr className="thin-hr" />
+          {skills.map((s, i) => (
+            <div key={i} className="skill-bar">
+              <div className="skill-fill">{s}</div>
+            </div>
+          ))}
         </section>
 
         <section className="cv-section">
           <h3 className="section-title">LANGUAGES</h3>
-          <div className="languages-grid">
-            {languages.map((l, i) => (
-              <div key={i} className="language-row">
-                <div className="language-name">{l}</div>
-                <div className="language-bar">
-                  <div className="language-level" style={{ width: `${60 + (i * 10)}%` }} />
-                </div>
-              </div>
-            ))}
-          </div>
+           <hr className="thin-hr" />
+          {languages.map((l, i) => (
+            <div key={i} className="skill-bar">
+              <div className="skill-fill">{l}</div>
+            </div>
+          ))}
         </section>
       </div>
     </div>

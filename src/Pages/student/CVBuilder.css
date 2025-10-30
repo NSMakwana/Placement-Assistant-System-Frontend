@@ -1,36 +1,136 @@
-.cvbuilder-container {
-  text-align: center;
-  padding: 40px;
-  background: #f5f7fa;
-  min-height: 100vh;
+.cv-builder-page {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.cv-templates {
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+.template-cards {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 30px;
-  margin-top: 40px;
+  gap: 20px;
 }
 
-.cv-template-card {
-  background: white;
-  border: 2px solid #ddd;
-  border-radius: 10px;
-  width: 250px;
-  padding: 20px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+.template-card {
   cursor: pointer;
-  transition: all 0.3s;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  text-align: center;
+  padding: 10px;
+  width: 220px;
+  transition: transform 0.2s;
 }
 
-.cv-template-card:hover {
+.template-card:hover {
   transform: scale(1.05);
-  border-color: #007bff;
+  box-shadow: 0 0 10px #ccc;
 }
 
-.cv-template-card img {
+.template-preview {
   width: 100%;
   border-radius: 6px;
-  margin-bottom: 10px;
+}
+
+.cv-container {
+  display: flex;
+  gap: 20px;
+}
+
+.cv-form {
+  flex: 1;
+  background: #f8f8f8;
+  padding: 20px;
+  border-radius: 10px;
+  height: 90vh;
+  overflow-y: auto;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.cv-preview {
+  flex: 1;
+  background: white;
+  border-radius: 10px;
+  padding: 10px;
+  overflow-y: auto;
+  height: 90vh;
+  box-shadow: 0 0 5px #ccc;
+}
+
+/* --- CV TEMPLATE DESIGN --- */
+.cv-template {
+  display: flex;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.dark-theme .left-section {
+  width: 35%;
+  background: #2f2f2f;
+  color: white;
+  padding: 20px;
+  border-radius: 10px 0 0 10px;
+}
+
+.dark-theme .right-section {
+  width: 65%;
+  padding: 20px;
+  background: #fff;
+  border-radius: 0 10px 10px 0;
+}
+
+.circle {
+  width: 120px;
+  height: 120px;
+  background: #555;
+  border-radius: 50%;
+  margin: 0 auto 20px auto;
+}
+
+.left-section h3,
+.right-section h3 {
+  margin-top: 20px;
+  text-transform: uppercase;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 5px;
+}
+
+ul {
+  list-style: square;
+  margin-left: 20px;
+}
+
+.download-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.download-buttons button {
+  padding: 10px 20px;
+  background: #2f2f2f;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.download-buttons button:hover {
+  background: #444;
 }

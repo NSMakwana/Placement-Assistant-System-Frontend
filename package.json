@@ -9,6 +9,8 @@
     "axios": "^1.13.1",
     "chart.js": "^4.4.6",
     "chartjs-plugin-datalabels": "^2.2.0",
+    "docx": "^9.5.1",
+    "file-saver": "^2.0.5",
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.2",
     "jspdf-autotable": "^3.8.4",
