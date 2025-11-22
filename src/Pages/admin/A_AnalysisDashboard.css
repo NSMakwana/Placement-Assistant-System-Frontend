@@ -11,9 +11,9 @@
 
 /* Filter section */
 .analysis-filters {
-  width: 90%; /* Use most of the page width */
+  width: 90%; 
   margin-top: 10px;
-  margin-left: 0; /* Align with dashboard */
+  margin-left: 0;
   padding: 10px 20px;
   background-color: #f9f9f9;
   border-radius: 8px;
@@ -22,7 +22,7 @@
 
 /* Chart sections */
 .chart-section {
-  width: 90%; /* Full width of dashboard */
+  width: 90%; 
   background-color: #ffffff;
   padding: 20px;
   border-radius: 10px;
