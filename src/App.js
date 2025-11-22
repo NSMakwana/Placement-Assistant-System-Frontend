@@ -20,6 +20,7 @@
   import Expense from './Pages/admin/Expense';
   import CVBuilder from "./Pages/student/CVBuilder";
   import AdminProfile from './Pages/admin/AdminProfile';
+  import StudentProfile from './Pages/student/StudentProfile';
 
 
   function App() {
@@ -33,6 +34,7 @@
         <Route path="/student/*" element={<StudentDashboardLayout />}>  
           <Route index element={<Dashboard />} />
           <Route path="dashboard" element={<Dashboard />} />
+          <Route path="studentprofile" element={<StudentProfile />} />
           <Route path="agreement" element={<AgreementForm />} />
           <Route path="studentdetail" element={<StudentDetailForm />} />
           <Route path="company" element={<CompanyDashboard />} />

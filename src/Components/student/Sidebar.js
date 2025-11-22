@@ -10,10 +10,13 @@ const Sidebar = () => {
       try {
         const storedUser = localStorage.getItem("user");
         const email = storedUser ? JSON.parse(storedUser).email : "";
-        const response = await fetch(`https://placement-assistant-system.onrender.com/api/user/hasSubmitted?email=${email}`);
+        const response = await fetch(
+          `https://placement-assistant-system.onrender.com/api/user/hasSubmitted?email=${email}`
+        );
+
         if (response.ok) {
           const data = await response.json();
-          setHasSubmitted(data); // data should be a boolean value
+          setHasSubmitted(data);
         } else {
           setHasSubmitted(false);
         }
@@ -26,41 +29,39 @@ const Sidebar = () => {
     checkSubmissionStatus();
   }, []);
 
-  // A helper to conditionally disable links if agreement not submitted
   const handleNavClick = (e) => {
     if (!hasSubmitted) {
-      // Prevent navigation if agreement not submitted
       e.preventDefault();
-      // Optionally, show a message or highlight the Agreement Form tab
       alert("Please submit the agreement form before accessing other sections.");
     }
   };
 
   return (
     <div className="sidebar">
-      {/* Agreement Form should always be enabled */}
+      
+      {/* ⭐ NEW — Student Profile FIRST */}
+      <NavLink
+        to="studentprofile"
+        className={({ isActive }) =>
+          isActive ? "menu-item active" : "menu-item"
+        }
+      >
+        <img src="../Images/Threeline.png" className="menu-icon" />
+        <span className="menu-text">Student Profile</span>
+      </NavLink>
+
+      {/* Agreement Form */}
       <NavLink
         to="agreement"
         className={({ isActive }) =>
           isActive ? "menu-item active" : "menu-item"
         }
       >
-        <img src="../Images/Threeline.png" alt="Agreement Icon" className="menu-icon" />
+        <img src="../Images/Threeline.png" className="menu-icon" />
         <span className="menu-text">Agreement Form</span>
       </NavLink>
 
-      {/* Other sections: only allow navigation if hasSubmitted is true */}
-      <NavLink
-        to="studentprofile"
-        className={({ isActive }) =>
-          isActive ? "menu-item active" : "menu-item disabled"
-        }
-        onClick={(e) => !hasSubmitted && handleNavClick(e)}
-      >
-        <img src="../Images/Threeline.png" alt="Profile Icon" className="menu-icon" />
-        <span className="menu-text">Student Profile</span>
-      </NavLink>
-
+      {/* Disabled Until Agreement Submitted */}
       <NavLink
         to="studentdetail"
         className={({ isActive }) =>
@@ -68,7 +69,7 @@ const Sidebar = () => {
         }
         onClick={(e) => !hasSubmitted && handleNavClick(e)}
       >
-        <img src="../Images/Threeline.png" alt="Detail Icon" className="menu-icon" />
+        <img src="../Images/Threeline.png" className="menu-icon" />
         <span className="menu-text">Student Detail Form</span>
       </NavLink>
 
@@ -79,7 +80,7 @@ const Sidebar = () => {
         }
         onClick={(e) => !hasSubmitted && handleNavClick(e)}
       >
-        <img src="../Images/Threeline.png" alt="Company Icon" className="menu-icon" />
+        <img src="../Images/Threeline.png" className="menu-icon" />
         <span className="menu-text">View Companies</span>
       </NavLink>
 
@@ -90,7 +91,7 @@ const Sidebar = () => {
         }
         onClick={(e) => !hasSubmitted && handleNavClick(e)}
       >
-        <img src="../Images/Threeline.png" alt="Analysis Icon" className="menu-icon" />
+        <img src="../Images/Threeline.png" className="menu-icon" />
         <span className="menu-text">Analysis</span>
       </NavLink>
 
@@ -100,10 +101,9 @@ const Sidebar = () => {
           isActive ? "menu-item active" : "menu-item"
         }
       >
-        <img src="../Images/Threeline.png" alt="CV Icon" className="menu-icon" />
+        <img src="../Images/Threeline.png" className="menu-icon" />
         <span className="menu-text">CV Builder</span>
       </NavLink>
-
     </div>
   );
 };
