@@ -12,6 +12,7 @@ function AdminProfile() {
   const admin = {
     name: "Admin User",
     email: "admin@example.com",
+    role:"Admin"
   };
 
   const handlePasswordChange = () => {
@@ -54,6 +55,7 @@ function AdminProfile() {
 
         <p><strong>Name:</strong> {admin.name}</p>
         <p><strong>Email:</strong> {admin.email}</p>
+        <p><strong>Role:</strong> {admin.role}</p>
 
         <button
           className="btn-toggle"
