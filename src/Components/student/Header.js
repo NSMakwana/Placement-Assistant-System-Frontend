@@ -29,7 +29,7 @@
 // export default Header;
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import NotificationBell from "./NotificationBell"; // adjust path if needed
+import NotificationBell from "./NotificationBell"; 
 import "./Header.css";
 
 const Header = ({ onLogout, studentId }) => {
