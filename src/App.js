@@ -23,7 +23,7 @@ import PreplacementTalk from './Pages/admin/Preplacement_talk';
 import Expense from './Pages/admin/Expense';
 import AdminProfile from './Pages/admin/AdminProfile';
 
-import PrivateRoute from './utils/PrivateRoute'; // adjust path if needed
+import PrivateRoute from './routes/PrivateRoute'; // adjust path if needed
 
 function App() {
   return (
