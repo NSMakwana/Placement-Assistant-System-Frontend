@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./NotificationPage.css";
+import { Link } from "react-router-dom";
 
 export default function NotificationPage({ studentId }) {
   const [notifications, setNotifications] = useState([]);
@@ -12,6 +13,7 @@ export default function NotificationPage({ studentId }) {
       const res = await axios.get(
         `https://placement-assistant-system.onrender.com/api/notifications/student/${studentId}`
       );
+       console.log("Notifications:", res.data);
       setNotifications(res.data);
     } catch (err) {
       console.error("Error fetching notifications:", err);
@@ -29,9 +31,9 @@ export default function NotificationPage({ studentId }) {
     }
   };
 
-  const openPoll = (pollId) => {
-    navigate(`/poll/${pollId}`);  
-  };
+  // const openPoll = (pollId) => {
+  //  navigate(`poll/${pollId}`);
+  // };
 
   useEffect(() => {
     if (studentId) fetchNotifications();
@@ -61,22 +63,22 @@ export default function NotificationPage({ studentId }) {
 
           {/* If notification is linked to a poll */}
           {n.pollId && (
-            <button
-              onClick={() => openPoll(n.pollId)}
+            <Link
+              to={`/student/poll/${n.pollId}`}
               style={{
+                display: "inline-block",
                 marginTop: "10px",
                 background: "#007bff",
                 color: "white",
                 padding: "5px 10px",
                 borderRadius: "5px",
-                border: "none",
+                textDecoration: "none",
                 cursor: "pointer",
               }}
             >
               Answer Poll
-            </button>
-          )}
-
+            </Link>
+)}
           {/* Mark as read button */}
           {!n.read && (
             <button

@@ -80,7 +80,11 @@ import AnalysisDashboard from './Pages/student/AnalysisDashboard';
 import CVBuilder from "./Pages/student/CVBuilder";
 import StudentProfile from './Pages/student/StudentProfile';
 import NotificationPage from "./Components/student/NotificationPage";
-import PollPage from './Pages/student/PollPage';
+import PollanswerPage from "./Pages/student/PollanswerPage";
+
+
+
+
 
 
 import A_Dashboard from './Pages/admin/A_Dashboard';
@@ -127,7 +131,10 @@ function App() {
         <Route path="analysis" element={<AnalysisDashboard />} />
         <Route path="cvbuilder" element={<CVBuilder />} />
         <Route path="notifications" element={ <NotificationPage studentId={JSON.parse(localStorage.getItem("user"))?.id} />}/>     
-        <Route path="poll/:pollId" element={<PollPage />} />
+        
+       <Route path="poll/:pollId" element={<PollanswerPage />} />
+
+
 
 
 
