@@ -1,0 +1,89 @@
+// src/Pages/student/PollAnswerPage.js
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
+import "./PollAnswerPage.css";
+
+export default function PollAnswerPage() {
+  const { pollId } = useParams();
+  const navigate = useNavigate();
+
+  const [poll, setPoll] = useState(null);
+  const [selectedOption, setSelectedOption] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  // Fetch poll by ID
+  const fetchPoll = async () => {
+    try {
+      const res = await axios.get(
+        `https://placement-assistant-system.onrender.com/api/polls/${pollId}`
+      );
+      setPoll(res.data);
+      setLoading(false);
+    } catch (err) {
+      console.error("Error fetching poll:", err);
+      setLoading(false);
+      alert("Poll not found");
+      navigate(-1);
+    }
+  };
+
+  const submitPoll = async () => {
+  if (!selectedOption) {
+    alert("Please select an option");
+    return;
+  }
+
+  try {
+    await axios.post(
+      `https://placement-assistant-system.onrender.com/api/polls/submit/${pollId}`,
+      {
+        studentId: localStorage.getItem("studentId"), // or userId from context
+        studentName: localStorage.getItem("name"), // optional
+        answer: selectedOption
+      }
+    );
+
+    alert("Poll submitted successfully!");
+    navigate(-1); // go back
+  } catch (err) {
+    console.error("Error submitting poll:", err);
+    alert("Error submitting poll");
+  }
+};
+
+
+  useEffect(() => {
+    fetchPoll();
+  }, [pollId]);
+
+  if (loading) return <p>Loading poll...</p>;
+  if (!poll) return <p>Poll not found</p>;
+
+  return (
+    <div className="poll-answer-page">
+      <h2>{poll.companyName} Poll</h2>
+      <p>{poll.question}</p>
+
+      <div className="options">
+        {poll.options.map((opt, index) => (
+          <div key={index} className="option">
+            <input
+              type="radio"
+              id={`option-${index}`}
+              name="pollOption"
+              value={opt}
+              checked={selectedOption === opt}
+              onChange={(e) => setSelectedOption(e.target.value)}
+            />
+            <label htmlFor={`option-${index}`}>{opt}</label>
+          </div>
+        ))}
+      </div>
+
+      <button onClick={submitPoll} className="submit-btn">
+        Submit
+      </button>
+    </div>
+  );
+}

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./Pollgenerator.css"
+import "./Pollgenerator.css";
 
 export default function PollGenerator() {
   const [company, setCompany] = useState("");
@@ -8,10 +8,12 @@ export default function PollGenerator() {
   const [question, setQuestion] = useState("");
   const [options, setOptions] = useState([""]);
 
+  // Add a new option input
   const addOption = () => {
     setOptions([...options, ""]);
   };
 
+  // Remove an option input
   const removeOption = (index) => {
     if (options.length > 1) {
       const updated = [...options];
@@ -20,23 +22,25 @@ export default function PollGenerator() {
     }
   };
 
+  // Update option value
   const updateOption = (index, value) => {
     const updated = [...options];
     updated[index] = value;
     setOptions(updated);
   };
 
+  // Send poll to backend
   const sendPoll = async () => {
-    if (!company || !batch || !question || options.some(o => !o)) {
+    if (!company || !batch || !question || options.some(o => !o.trim())) {
       alert("All fields are required.");
       return;
     }
 
     const pollData = {
-      companyName: company,
-      batch,
-      question,
-      options
+      companyName: company.trim(),
+      batch: batch.trim(),
+      question: question.trim(),
+      options: options.map(o => o.trim())
     };
 
     try {
@@ -51,8 +55,8 @@ export default function PollGenerator() {
       setQuestion("");
       setOptions([""]);
     } catch (err) {
-      console.error(err);
-      alert("Error sending poll");
+      console.error("Error sending poll:", err);
+      alert("Error sending poll. Check console for details.");
     }
   };
 
@@ -65,14 +69,15 @@ export default function PollGenerator() {
         type="text"
         value={company}
         onChange={(e) => setCompany(e.target.value)}
+        placeholder="Enter company name"
       />
 
-      <label>Batch</label>
+      <label>Target Batch</label>
       <input
         type="text"
-        placeholder="2024, 2025, etc."
         value={batch}
         onChange={(e) => setBatch(e.target.value)}
+        placeholder="2023-2024, 2024-2025, etc."
       />
 
       <label>Question</label>
@@ -80,6 +85,7 @@ export default function PollGenerator() {
         type="text"
         value={question}
         onChange={(e) => setQuestion(e.target.value)}
+        placeholder="Enter the poll question"
       />
 
       <label>Options</label>
@@ -89,15 +95,15 @@ export default function PollGenerator() {
             type="text"
             value={opt}
             onChange={(e) => updateOption(index, e.target.value)}
+            placeholder={`Option ${index + 1}`}
           />
-          <button onClick={() => removeOption(index)}>X</button>
+          <button type="button" onClick={() => removeOption(index)}>X</button>
         </div>
       ))}
 
-      <button onClick={addOption}>Add Option</button>
-
+      <button type="button" onClick={addOption}>Add Option</button>
       <br /><br />
-      <button onClick={sendPoll} className="send-btn">
+      <button type="button" onClick={sendPoll} className="send-btn">
         Send Poll
       </button>
     </div>

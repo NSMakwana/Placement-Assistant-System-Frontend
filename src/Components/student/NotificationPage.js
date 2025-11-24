@@ -8,17 +8,25 @@ export default function NotificationPage({ studentId }) {
   const navigate = useNavigate();
 
   const fetchNotifications = async () => {
-    const res = await axios.get(
-      `https://placement-assistant-system.onrender.com/api/notifications/student/${studentId}`
-    );
-    setNotifications(res.data);
+    try {
+      const res = await axios.get(
+        `https://placement-assistant-system.onrender.com/api/notifications/student/${studentId}`
+      );
+      setNotifications(res.data);
+    } catch (err) {
+      console.error("Error fetching notifications:", err);
+    }
   };
 
   const markAsRead = async (id) => {
-    await axios.put(
-      `https://placement-assistant-system.onrender.com/api/notifications/mark-read/${id}`
-    );
-    fetchNotifications();
+    try {
+      await axios.put(
+        `https://placement-assistant-system.onrender.com/api/notifications/mark-read/${id}`
+      );
+      fetchNotifications();
+    } catch (err) {
+      console.error("Error marking notification as read:", err);
+    }
   };
 
   const openPoll = (pollId) => {
@@ -26,16 +34,14 @@ export default function NotificationPage({ studentId }) {
   };
 
   useEffect(() => {
-    fetchNotifications();
-  }, []);
+    if (studentId) fetchNotifications();
+  }, [studentId]);
 
   return (
     <div className="notification">
       <h2>Notifications</h2>
 
-      {notifications.length === 0 && (
-        <p>No notifications yet.</p>
-      )}
+      {notifications.length === 0 && <p>No notifications yet.</p>}
 
       {notifications.map((n) => (
         <div
@@ -50,7 +56,6 @@ export default function NotificationPage({ studentId }) {
         >
           <h4>{n.title}</h4>
           <p>{n.message}</p>
-
           <small>{new Date(n.createdAt).toLocaleString()}</small>
           <br />
 
@@ -72,8 +77,12 @@ export default function NotificationPage({ studentId }) {
             </button>
           )}
 
+          {/* Mark as read button */}
           {!n.read && (
-            <button onClick={() => markAsRead(n.id)} style={{ marginLeft: "10px" }}>
+            <button
+              onClick={() => markAsRead(n.id)}
+              style={{ marginLeft: "10px" }}
+            >
               Mark as Read
             </button>
           )}

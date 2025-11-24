@@ -7,15 +7,23 @@ export default function NotificationBell({ studentId }) {
   const navigate = useNavigate();
 
   const fetchNotifications = async () => {
-    const res = await axios.get(`https://placement-assistant-system.onrender.com/api/notifications/student/${studentId}`);
-    setNotifications(res.data);
+    try {
+      const res = await axios.get(
+        `https://placement-assistant-system.onrender.com/api/notifications/student/${studentId}`
+      );
+      setNotifications(res.data);
+    } catch (err) {
+      console.error("Error fetching notifications:", err);
+    }
   };
 
   useEffect(() => {
-    fetchNotifications();
-    const interval = setInterval(fetchNotifications, 30000);
-    return () => clearInterval(interval);
-  }, []);
+    if (studentId) {
+      fetchNotifications();
+      const interval = setInterval(fetchNotifications, 30000);
+      return () => clearInterval(interval);
+    }
+  }, [studentId]);
 
   const unreadCount = notifications.filter(n => !n.read).length;
 
