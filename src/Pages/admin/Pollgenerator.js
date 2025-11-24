@@ -61,9 +61,10 @@ export default function PollGenerator() {
   };
 
   return (
-    <div className="poll-generator">
+    <div className="poll-generator-page">
       <h2>Create Poll</h2>
 
+    <div className="poll-generator-form">
       <label>Company Name</label>
       <input
         type="text"
@@ -97,15 +98,17 @@ export default function PollGenerator() {
             onChange={(e) => updateOption(index, e.target.value)}
             placeholder={`Option ${index + 1}`}
           />
-          <button type="button" onClick={() => removeOption(index)}>X</button>
+          <button type="button" className="poll-generator-btn-rm" onClick={() => removeOption(index)}>X</button>
         </div>
+      
       ))}
 
-      <button type="button" onClick={addOption}>Add Option</button>
+      <button type="button" className="poll-generator-btn"onClick={addOption}>Add Option</button>
       <br /><br />
-      <button type="button" onClick={sendPoll} className="send-btn">
+      <button type="button" onClick={sendPoll} className="poll-generator-btn">
         Send Poll
       </button>
+    </div>
     </div>
   );
 }

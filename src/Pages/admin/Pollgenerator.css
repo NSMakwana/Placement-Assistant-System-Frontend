@@ -1,4 +1,63 @@
-.poll-generator{
-    margin-left: 17%;
-    margin-top: 2%;
+
+.poll-generator-page {
+
+  font-family: Arial, sans-serif;
+  margin-left: 17%;
+  margin-top: 5%;
+}
+
+.poll-generator-page h2 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.poll-generator-form {
+  max-width: 500px;
+  background: #fafafa;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+.poll-generator-form label {
+  font-weight: bold;
+  margin-top: 10px;
+  display: block;
+}
+
+.poll-generator-form input,
+.poll-generator-form textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 7px;
+  border: 1px solid #ccc;
+  margin-top: 5px;
+}
+
+.poll-generator-btn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #066d75;
+  border: none;
+  color: white;
+  border-radius: 7px;
+  cursor: pointer;
+}
+.poll-generator-btn-rm {
+  margin-top: 1px;
+  padding: 10px 20px;
+  background: #990911;
+  border: none;
+  color: white;
+  border-radius: 7px;
+  cursor: pointer;
+}
+.poll-generator-btn-rm:hover {
+  
+  background: #d4545b;
+  
+}
+
+.poll-generator-btn:hover {
+  background:  #53aab0;
 }

@@ -11,14 +11,15 @@ import {
 } from "recharts";
 import { useParams } from "react-router-dom";
 import * as XLSX from "xlsx";
-import "./PollList.css";
+import useStudent from "../../hooks/UseStudent"; 
+import "./PollResult.css";
 
 export default function PollResults() {
   const { pollId } = useParams();
+  const { student, loading: studentLoading } = useStudent();
   const [poll, setPoll] = useState(null);
   const [results, setResults] = useState([]);
 
-  // fetch poll and results structure expected: [{ option: 'Yes', count: 12 }, ...]
   const fetchResults = async () => {
     try {
       const pollRes = await axios.get(
@@ -26,11 +27,9 @@ export default function PollResults() {
       );
       setPoll(pollRes.data);
 
-      // Hit your backend endpoint which returns aggregated counts per option
       const res = await axios.get(
-        `https://placement-assistant-system.onrender.com/api/poll-response/results/${pollId}`
+        `https://placement-assistant-system.onrender.com/api/polls/results/${pollId}`
       );
-      // Expect: res.data = [{ option: 'Yes', count: 12 }, ...]
       setResults(res.data || []);
     } catch (err) {
       console.error(err);
@@ -46,10 +45,13 @@ export default function PollResults() {
       alert("No results to export.");
       return;
     }
-    // Convert results array to worksheet
+
     const ws = XLSX.utils.json_to_sheet(results.map(r => ({
       Option: r.option,
-      Votes: r.count
+      Votes: r.count,
+      Name: student?.name || "",
+      Email: student?.email || "",
+      Course: student?.course || ""
     })));
 
     const wb = XLSX.utils.book_new();
@@ -59,30 +61,35 @@ export default function PollResults() {
     XLSX.writeFile(wb, fileName);
   };
 
-  if (!poll) return <div className="container card">Loading poll...</div>;
+  if (!poll || studentLoading) return <div className="container card">Loading poll...</div>;
 
   return (
-    <div className="container">
-      <div className="card">
+    <div className="poll-results-container">
+      <div className="poll-results-card">
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <div>
             <h2>Poll Results</h2>
-            <div className="small">Company: {poll.companyName} • Batch: {poll.batch}</div>
+            <div className="small">
+              Company: {poll.companyName} • Batch: {poll.batch}
+            </div>
             <div className="small" style={{ marginTop: 6 }}>{poll.question}</div>
+            <div className="small" style={{ marginTop: 4 }}>
+              Student: {student?.name} • Email: {student?.email} • Course: {student?.course}
+            </div>
           </div>
 
-          <div className="right">
-            <button className="btn btn-ghost" onClick={exportToXlsx} style={{ marginRight: 8 }}>
+          <div className="poll-results-right">
+            <button className="poll-results-btn btn-ghost" onClick={exportToXlsx} style={{ marginRight: 8 }}>
               Export XLSX
             </button>
-            <button className="btn btn-ghost" onClick={fetchResults}>
+            <button className="poll-results-btn btn-ghost" onClick={fetchResults}>
               Refresh
             </button>
           </div>
         </div>
 
-        <div className="results-wrap">
-          <div className="chart-card card">
+        <div className="poll-results-results-wrap">
+          <div className="poll-results-chart-card card">
             <h3>Votes by Option</h3>
             <div style={{ width: "100%", height: 320 }}>
               <ResponsiveContainer width="100%" height="100%">
@@ -97,12 +104,12 @@ export default function PollResults() {
             </div>
           </div>
 
-          <div className="summary-card card">
+          <div className="poll-results-summary-card card">
             <h3>Summary</h3>
             {results.length === 0 && <p className="small">No responses yet.</p>}
 
             {results.map((r) => (
-              <div key={r.option} className="summary-item">
+              <div key={r.option} className="poll-results-summary-item">
                 <div>
                   <div style={{ fontWeight: 700 }}>{r.option}</div>
                   <div className="small">votes</div>
