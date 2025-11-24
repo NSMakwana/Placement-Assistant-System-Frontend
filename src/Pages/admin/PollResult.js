@@ -19,6 +19,19 @@ export default function PollResults() {
   const { student, loading: studentLoading } = useStudent();
   const [poll, setPoll] = useState(null);
   const [results, setResults] = useState([]);
+  const [detailedResponses, setDetailedResponses] = useState([]);
+
+
+  const fetchDetailedResponses = async () => {
+  try {
+    const res = await axios.get(
+      `https://placement-assistant-system.onrender.com/api/polls/responses/detailed/${pollId}`
+    );
+    setDetailedResponses(res.data || []);
+  } catch (err) {
+    console.error(err);
+  }
+};
 
   const fetchResults = async () => {
     try {
@@ -38,28 +51,29 @@ export default function PollResults() {
 
   useEffect(() => {
     fetchResults();
+    fetchDetailedResponses();
   }, [pollId]);
 
   const exportToXlsx = () => {
-    if (!results || results.length === 0) {
-      alert("No results to export.");
-      return;
-    }
+  if (!detailedResponses || detailedResponses.length === 0) {
+    alert("No responses to export.");
+    return;
+  }
 
-    const ws = XLSX.utils.json_to_sheet(results.map(r => ({
-      Option: r.option,
-      Votes: r.count,
-      Name: student?.name || "",
-      Email: student?.email || "",
-      Course: student?.course || ""
-    })));
+  const ws = XLSX.utils.json_to_sheet(
+    detailedResponses.map(r => ({
+      Name: r.studentName,
+      Email: r.email,
+      Course: r.course,
+      Answer: r.answer
+    }))
+  );
 
-    const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "Poll Results");
-
-    const fileName = `${(poll?.companyName || "poll")}_${pollId}_results.xlsx`;
-    XLSX.writeFile(wb, fileName);
-  };
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, "Poll Results");
+  const fileName = `${(poll?.companyName || "poll")}_${pollId}_results.xlsx`;
+  XLSX.writeFile(wb, fileName);
+};
 
   if (!poll || studentLoading) return <div className="container card">Loading poll...</div>;
 
