@@ -5,6 +5,7 @@ import AgreementForm from '../Components/AgreementForm';
 import StudentDetailForm from '../Components/StudentDetailForm';
 import CompanyDashboard from '../Components/CompanyDashboard';
 import AnalysisDashboard from '../Components/AnalysisDashboard';
+import NotificationPage from '../Components/student/NotificationPage';
 
 
 const StudentRoutes = () => {
@@ -15,6 +16,8 @@ const StudentRoutes = () => {
       <Route path="studentdetail" element={<StudentDetailForm />} />
       <Route path="company" element={<CompanyDashboard />} />
       <Route path="analysis" element={<AnalysisDashboard />} />
+      <Route path="notification" element={<NotificationPage studentId={JSON.parse(localStorage.getItem("user")).id} />}
+/>
       {/* Default student route */}
       <Route path="" element={<Navigate to="dashboard" replace />} />
     </Routes>

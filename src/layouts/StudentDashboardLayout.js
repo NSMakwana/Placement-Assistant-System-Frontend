@@ -7,12 +7,15 @@ import Header from '../Components/student/Header';
 
 const StudentDashboardLayout = () => {
   const [selectedMenu, setSelectedMenu] = useState('');
+   const user = JSON.parse(localStorage.getItem("user"));
+  const studentId = user?.id; 
 
   return (
-    <div className="dashboard-layout">
+    <div className="dashboard-layout"> 
       <Sidebar />
       <div className="main-content">
-        <Header />
+        
+        <Header studentId={studentId} />
         <div className="content">
           <Outlet context={{ selectedMenu, setSelectedMenu }}/>
         </div>

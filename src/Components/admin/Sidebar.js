@@ -58,7 +58,24 @@
           <img src="../Images/Threeline.png" alt="Company Icon" className="menu-icon" />
           <span className="menu-text">Company</span>
         </NavLink>
-
+        <NavLink
+          to="pollgenerator"
+          className={({ isActive }) =>
+            isActive ? "menu-item active" : "menu-item"
+          }
+        >
+          <img src="../Images/Threeline.png" alt="Company Icon" className="menu-icon" />
+          <span className="menu-text">Poll Generator</span>
+        </NavLink>
+        <NavLink
+          to="polllist"
+          className={({ isActive }) =>
+            isActive ? "menu-item active" : "menu-item"
+          }
+        >
+          <img src="../Images/Threeline.png" alt="Company Icon" className="menu-icon" />
+          <span className="menu-text">Manage Polls</span>
+        </NavLink>
         <NavLink
           to="preplacement_talk"
           className={({ isActive }) =>
