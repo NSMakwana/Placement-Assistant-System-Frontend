@@ -59,11 +59,11 @@ export default function PollList() {
               <td
                 className={poll.isActive ? "status-active" : "status-inactive"}
               >
-                {poll.isActive ? "Active" : "Inactive"}
+                {poll.active ? "Active" : "Inactive"}
               </td>
 
               <td>
-                {poll.isActive && (
+                {poll.active && (
                   <button
                     onClick={() => stopPoll(poll.id)}
                     className="stop-btn"
