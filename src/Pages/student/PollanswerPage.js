@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./PollAnswerPage.css";
 
 export default function PollanswerPage() {
   const { pollId } = useParams();
@@ -24,7 +25,7 @@ export default function PollanswerPage() {
   const submitPoll = async () => {
     if (!selectedOption) return alert("Select an option");
     const user = JSON.parse(localStorage.getItem("user"));
-    await axios.post(`https://placement-assistant-system.onrender.com/api/poll-responses/submit/${pollId}`, {
+    await axios.post(`https://placement-assistant-system.onrender.com/api/polls/submit/${pollId}`, {
       pollId,
       studentId: user.id,
       studentName: user.name,
@@ -37,7 +38,7 @@ export default function PollanswerPage() {
   if (!poll) return <p>Loading...</p>;
 
   return (
-    <div>
+    <div className="poll-answer-page">
       <h2>{poll.companyName} Poll</h2>
       <p>{poll.question}</p>
       {poll.options.map((opt, idx) => (
