@@ -98,11 +98,22 @@ const StudentDetailForm = () => {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Student Details Submitted: ", studentDetails);
-    // Here, you can send the studentDetails to your backend
-  };
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const response = await axios.post(
+     'https://placement-assistant-system.onrender.com/api/students',
+      studentDetails
+    );
+
+    alert("Student details saved successfully!");
+    console.log(response.data);
+  } catch (error) {
+    console.error("Error saving student details:", error);
+    alert("Error submitting details");
+  }
+};
+
 
   return (
     <div className="student-form-container">
