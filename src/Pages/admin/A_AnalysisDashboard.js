@@ -68,12 +68,13 @@ const A_AnalysisDashboard = ({ section, fullscreen }) => {
     { year: "2025", offers: 130 },
   ];
 
+  // ✅ FIXED — Correct Course Names (Your Requirement)
   const branchPlacementData = [
-    { year: 2020, CSE: 120, IT: 90, ECE: 60, ME: 40 },
-    { year: 2021, CSE: 140, IT: 100, ECE: 70, ME: 55 },
-    { year: 2022, CSE: 160, IT: 120, ECE: 80, ME: 65 },
-    { year: 2023, CSE: 180, IT: 135, ECE: 90, ME: 75 },
-    { year: 2024, CSE: 200, IT: 150, ECE: 100, ME: 85 },
+    { year: 2020, MCS: 120, AIML: 90, "M.TECH": 60, "Msc.cs": 40 },
+    { year: 2021, MCS: 140, AIML: 100, "M.TECH": 70, "Msc.cs": 55 },
+    { year: 2022, MCS: 160, AIML: 120, "M.TECH": 80, "Msc.cs": 65 },
+    { year: 2023, MCS: 180, AIML: 135, "M.TECH": 90, "Msc.cs": 75 },
+    { year: 2024, MCS: 200, AIML: 150, "M.TECH": 100, "Msc.cs": 85 },
   ];
 
   const coursePlacedData = {
@@ -152,7 +153,7 @@ const A_AnalysisDashboard = ({ section, fullscreen }) => {
   };
 
   // ----------------------------------------------------------
-  // SECTION MODE (FULL SCREEN for each graph)
+  // SECTION MODE (Full screen graph)
   // ----------------------------------------------------------
   if (section) {
     return (
@@ -179,7 +180,7 @@ const A_AnalysisDashboard = ({ section, fullscreen }) => {
   }
 
   // ----------------------------------------------------------
-  // DEFAULT: DASHBOARD (All graphs one time)
+  // DEFAULT: DASHBOARD (all graphs)
   // ----------------------------------------------------------
 
   return (
@@ -204,7 +205,7 @@ const A_AnalysisDashboard = ({ section, fullscreen }) => {
 };
 
 // -----------------------------------------------------
-// SMALL GRAPH COMPONENTS (clean & separate)
+// GRAPH COMPONENTS
 // -----------------------------------------------------
 
 const GraphPlacement = ({ placementOverviewData, placementOverviewOptions }) => (
@@ -270,9 +271,10 @@ const GraphOffers = ({ offersPerYearData }) => (
   </div>
 );
 
+// ✅ FIXED FINAL GRAPH (Corrected!)
 const GraphBranch = ({ branchPlacementData }) => (
   <div className="chart-section">
-    <h3>Branch-wise Placement Over Time</h3>
+    <h3>Course-wise Placement Over Time</h3>
     <div style={{ width: "100%", height: 400 }}>
       <ResponsiveContainer>
         <LineChart data={branchPlacementData}>
@@ -281,10 +283,10 @@ const GraphBranch = ({ branchPlacementData }) => (
           <YAxis />
           <RechartTooltip />
           <RechartLegend />
-          <Line type="monotone" dataKey="CSE" stroke="#4e79a7" />
-          <Line type="monotone" dataKey="IT" stroke="#f28e2b" />
-          <Line type="monotone" dataKey="ECE" stroke="#e15759" />
-          <Line type="monotone" dataKey="ME" stroke="#76b7b2" />
+          <Line type="monotone" dataKey="MCS" stroke="#4e79a7" strokeWidth={2} />
+          <Line type="monotone" dataKey="AIML" stroke="#f28e2b" strokeWidth={2} />
+          <Line type="monotone" dataKey="M.TECH" stroke="#e15759" strokeWidth={2} />
+          <Line type="monotone" dataKey="Msc.cs" stroke="#76b7b2" strokeWidth={2} />
         </LineChart>
       </ResponsiveContainer>
     </div>
