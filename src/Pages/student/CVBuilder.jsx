@@ -41,16 +41,35 @@ export default function CVBuilder() {
     }
   };
 
+  // ---------------------------
+  // FIX: Hidden clone screenshot
+  // ---------------------------
   const downloadPDF = () => {
-    const doc = new jsPDF("p", "pt", "a4");
-    doc.html(document.getElementById("cv-preview"), {
-      callback: function (pdf) {
-        pdf.save("CV.pdf");
-      },
-      x: 20,
-      y: 20,
-      html2canvas: { scale: 0.57 },
-    });
+    const original = document.getElementById("cv-preview");
+    const clone = original.cloneNode(true);
+
+    const hiddenArea = document.getElementById("cv-capture");
+    hiddenArea.innerHTML = "";
+    hiddenArea.appendChild(clone);
+
+    const pdf = new jsPDF("p", "pt", "a4");
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const scale = pageWidth / clone.offsetWidth;
+
+    setTimeout(() => {
+      pdf.html(clone, {
+        callback: (pdf) => pdf.save("CV.pdf"),
+        x: 0,
+        y: 0,
+        width: pageWidth,
+        windowWidth: clone.offsetWidth,
+        html2canvas: {
+          scale,
+          useCORS: true,
+          allowTaint: true,
+        },
+      });
+    }, 100);
   };
 
   const downloadWord = async () => {
@@ -63,20 +82,21 @@ export default function CVBuilder() {
                 new TextRun(form.name || ""),
                 new TextRun("\n"),
                 new TextRun(form.title || ""),
-                new TextRun("\n\nAbout:\n" + form.about || ""),
-                new TextRun("\n\nEducation:\n" + form.education || ""),
-                new TextRun("\n\nExperience:\n" + form.experience || ""),
-                new TextRun("\n\nSkills:\n" + form.skills || ""),
-                new TextRun("\n\nLanguages:\n" + form.languages || ""),
-                new TextRun("\n\nHobbies:\n" + form.hobbies || ""),
-                new TextRun("\n\nReferences:\n" + form.references || ""),
-                new TextRun("\n\nLinks:\n" + form.links || ""),
+                new TextRun("\n\nAbout:\n" + (form.about || "")),
+                new TextRun("\n\nEducation:\n" + (form.education || "")),
+                new TextRun("\n\nExperience:\n" + (form.experience || "")),
+                new TextRun("\n\nSkills:\n" + (form.skills || "")),
+                new TextRun("\n\nLanguages:\n" + (form.languages || "")),
+                new TextRun("\n\nHobbies:\n" + (form.hobbies || "")),
+                new TextRun("\n\nReferences:\n" + (form.references || "")),
+                new TextRun("\n\nLinks:\n" + (form.links || "")),
               ],
             }),
           ],
         },
       ],
     });
+
     const blob = await Packer.toBlob(doc);
     saveAs(blob, "CV.docx");
   };
@@ -107,66 +127,33 @@ export default function CVBuilder() {
   return (
     <div className="cvbuilder-page">
       <div className="cvbuilder-container">
-        {/* Left: Form */}
+
         <div className="cv-form-column">
           <h2>CV Builder</h2>
 
           <label>Upload Photo (optional)</label>
           <input type="file" accept="image/*" onChange={handlePhoto} />
 
-          <label>Name</label>
-          <input name="name" value={form.name} onChange={handleChange} />
+          {Object.keys(form).map((key) => (
+            <div key={key}>
+              <label>{key.charAt(0).toUpperCase() + key.slice(1)}</label>
 
-          <label>Title</label>
-          <input name="title" value={form.title} onChange={handleChange} />
-
-          <label>Location</label>
-          <input name="location" value={form.location} onChange={handleChange} />
-
-          <label>Email</label>
-          <input name="email" value={form.email} onChange={handleChange} />
-
-          <label>Phone</label>
-          <input name="phone" value={form.phone} onChange={handleChange} />
-
-          <label>About / Profile</label>
-          <textarea name="about" rows="4" value={form.about} onChange={handleChange} />
-
-          <label>Education (use new lines)</label>
-          <textarea
-            name="education"
-            rows="5"
-            value={form.education}
-            onChange={handleChange}
-          />
-
-          <label>Experience / Projects (use new lines)</label>
-          <textarea
-            name="experience"
-            rows="5"
-            value={form.experience}
-            onChange={handleChange}
-          />
-
-          <label>Skills (comma separated)</label>
-          <input name="skills" value={form.skills} onChange={handleChange} />
-
-          <label>Languages (comma separated)</label>
-          <input name="languages" value={form.languages} onChange={handleChange} />
-
-          <label>Hobbies (comma separated)</label>
-          <input name="hobbies" value={form.hobbies} onChange={handleChange} />
-
-          <label>References / Links</label>
-          <textarea
-            name="references"
-            rows="4"
-            value={form.references}
-            onChange={handleChange}
-          />
-
-          <label>Links</label>
-          <input name="links" value={form.links} onChange={handleChange} />
+              {["about", "education", "experience", "references"].includes(key) ? (
+                <textarea
+                  name={key}
+                  rows="4"
+                  value={form[key]}
+                  onChange={handleChange}
+                />
+              ) : (
+                <input
+                  name={key}
+                  value={form[key]}
+                  onChange={handleChange}
+                />
+              )}
+            </div>
+          ))}
 
           <div className="download-buttons">
             <button onClick={downloadPDF}>Download PDF</button>
@@ -174,11 +161,21 @@ export default function CVBuilder() {
           </div>
         </div>
 
-        {/* Right: Live Preview */}
         <div className="cv-preview-column" id="cv-preview">
           <CVTemplate1 data={form} photoUrl={photoUrl} />
         </div>
       </div>
+
+      {/* Hidden capture container */}
+      <div
+        id="cv-capture"
+        style={{
+          position: "absolute",
+          top: "-5000px",
+          left: "-5000px",
+          zIndex: -1,
+        }}
+      ></div>
     </div>
   );
 }

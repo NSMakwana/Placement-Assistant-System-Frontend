@@ -113,8 +113,6 @@
           <img src="../Images/Threeline.png" alt="Result Icon" className="menu-icon" />
           <span className="menu-text">Result</span>
         </NavLink>
-
-        {/* ✅ CHANGED: Analysis now opens the fullscreen version */}
         <NavLink
           to="/admin/analysis/fullscreen"
           className={({ isActive }) =>
@@ -124,7 +122,15 @@
           <img src="../Images/Threeline.png" alt="Analysis Icon" className="menu-icon" />
           <span className="menu-text">Analysis</span>
         </NavLink>
-
+        <NavLink
+          to="chat"
+          className={({ isActive }) =>
+            isActive ? "menu-item active" : "menu-item"
+          }
+        >
+          {/* <img src="../Images/Threeline.png" className="menu-icon" /> */}
+          <span className="menu-text">💬 Chat</span>
+        </NavLink>
         <NavLink
           to="analysis"
           className={({ isActive }) =>

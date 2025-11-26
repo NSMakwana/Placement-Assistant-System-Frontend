@@ -104,6 +104,15 @@ const Sidebar = () => {
         <img src="../Images/Threeline.png" className="menu-icon" />
         <span className="menu-text">CV Builder</span>
       </NavLink>
+      <NavLink
+        to="chat"
+        className={({ isActive }) =>
+          isActive ? "menu-item active" : "menu-item"
+        }
+      >
+        {/* <img src="../Images/Threeline.png" className="menu-icon" /> */}
+        <span className="menu-text">💬 Chat</span>
+      </NavLink>
     </div>
   );
 };
