@@ -133,6 +133,15 @@ const Sidebar = () => {
 
 
       
+      <NavLink
+        to="chat"
+        className={({ isActive }) =>
+          isActive ? "menu-item active" : "menu-item"
+        }
+      >
+        {/* <img src="../Images/Threeline.png" className="menu-icon" /> */}
+        <span className="menu-text">💬 Chat</span>
+      </NavLink>
     </div>
   );
 };

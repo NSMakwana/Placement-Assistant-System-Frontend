@@ -81,7 +81,7 @@ import CVBuilder from "./Pages/student/CVBuilder";
 import StudentProfile from './Pages/student/StudentProfile';
 import NotificationPage from "./Components/student/NotificationPage";
 import PollanswerPage from "./Pages/student/PollanswerPage";
-
+import ChatPage from './Pages/student/ChatPage';
 
 
 
@@ -102,6 +102,7 @@ import PollResults from './Pages/admin/PollResult';
 import PollList from './Pages/admin/PollList';
 import Questions from './Pages/student/Questions';
 
+import AdminChatPage from './Pages/admin/AdminChatPage';
 
 
 
@@ -136,6 +137,7 @@ function App() {
         <Route path="notifications" element={ <NotificationPage studentId={JSON.parse(localStorage.getItem("user"))?.id} />}/>     
         
        <Route path="poll/:pollId" element={<PollanswerPage />} />
+        <Route path="chat" element={<ChatPage />} />
 
 
 
@@ -165,6 +167,8 @@ function App() {
         <Route path="pollgenerator" element={<PollGenerator />} />
         <Route path="polllist" element={<PollList />} />
         <Route path="poll-results/:pollId" element={<PollResults />} />
+        <Route path="chat" element={<AdminChatPage />} />
+
 
 
       </Route>

@@ -1,5 +1,10 @@
 /* src/pages/student/templates/CVTemplate1.css */
 
+.cv-right-white, 
+.cv-template-wrap, 
+.cv-section {
+  display: block;
+}
 .cvbuilder-page {
   margin-top: 35px;
   display: flex;
@@ -42,12 +47,13 @@
 }
 
 /* CV template */
-.cv-template-wrap {  
+.cv-template-wrap {
   display: flex;
-  background: #fff;
-  max-width: 750px;
-  width: 100%;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  width: 800px;       /* fixed width = exact PDF width */
+  min-height: 1120px; /* exact A4 aspect ratio */
+  background: white;
+
+  
 }
 
 /* Left dark panel */
@@ -127,8 +133,9 @@
 .cv-right-white {
   flex: 1;
   background: #fff;
-  padding: 20px;
+  padding: 25px 30px;
   box-sizing: border-box;
+  /* width: 540px; */
 }
 
 .cv-name-row {
