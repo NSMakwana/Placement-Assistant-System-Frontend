@@ -104,6 +104,35 @@ const Sidebar = () => {
         <img src="../Images/Threeline.png" className="menu-icon" />
         <span className="menu-text">CV Builder</span>
       </NavLink>
+
+      <NavLink
+  to="questions"
+  className={({ isActive }) =>
+    isActive ? "menu-item active" : "menu-item disabled"
+  }
+  onClick={(e) => !hasSubmitted && handleNavClick(e)}
+>
+  <img src="../Images/Threeline.png" alt="Questions Icon" className="menu-icon" />
+  <span className="menu-text">Questions</span>
+</NavLink>
+
+<NavLink
+  to="question-bank"
+  className={({ isActive }) =>
+    isActive ? "menu-item active" : "menu-item disabled"
+  }
+  onClick={(e) => !hasSubmitted && handleNavClick(e)}
+>
+  <img
+    src="../Images/Threeline.png"
+    alt="Question Bank Icon"
+    className="menu-icon"
+  />
+  <span className="menu-text">Question Bank</span>
+</NavLink>
+
+
+      
     </div>
   );
 };
