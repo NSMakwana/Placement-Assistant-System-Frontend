@@ -56,5 +56,6 @@
     margin-left:10%;
     width:100%;
     position:fixed;
+    overflow-y: scroll;
     
   }

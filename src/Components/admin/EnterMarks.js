@@ -58,6 +58,8 @@ const EnterMarks = () => {
   const submitResult = async (studentId) => {
     const payload = {
       studentId,
+      studentName:students.name,
+      studentEmail:students.email,
       companyId,
       designation: designation,
       roundName,

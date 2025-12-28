@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import CompanyFilters from "../..//Components/admin/CompanyFilter";
 import ResultFilters from "../../Components/admin/ResultFilters";
 import EnterResult from "../../Components/admin/EnterResult"; // Import EnterResult component
+import ViewResult from "../../Components/admin/ViewResult";
 import "./EnterResultDashboard.css";
 
 const EnterResultDashboard = () => {
@@ -65,11 +66,16 @@ const EnterResultDashboard = () => {
       );
     }
     if (Option === "ViewResult") {
-      return (
-        <div className="viewResult">
-          <ResultFilters onFilter={handleFilter} />
-        </div>
-      );
+     return (
+    <div className="viewResult">
+      <CompanyFilters onFilter={handleFilter} />
+      <ViewResult
+        selectedCompany={selectedCompany}
+  selectedDesignation={selectedDesignation}
+  
+      />
+    </div>
+  );
     }
     return null;
   };
