@@ -34,17 +34,21 @@
 
 .wa-chat-user-item:hover {
   background: #f5f5f5;
+   border: 1px solid #f5f5f5;
+  border-radius: 15px;
 }
 
 .wa-chat-active {
-  background: #d9fdd3 !important;
+  background: #ecf1f1 !important;
+  border: 1px solid #e8f3f4;
+  border-radius: 15px;   
 }
 
 /* Avatar */
 .wa-chat-user-avatar {
   width: 40px;
   height: 40px;
-  background: #25d366;
+  background: #51bdc9;
   color: #fff;
   border-radius: 50%;
   display: flex;
@@ -59,8 +63,9 @@
   width: 72%;
   display: flex;
   flex-direction: column;
-  margin-top: 4%;
+  margin-top: 5.5%;
   height: 90vh;
+  background: #ecf1f1;
   
 }
 
@@ -127,10 +132,10 @@
 .wa-chat-input-box button {
   margin-left: 10px;
   padding: 10px 20px;
-  background: #25d366;
+  background: #51bdc9;
   border: none;
   color: white;
-  border-radius: 6px;
+  border-radius: 35px;
   cursor: pointer;
 }
 .wa-chat-search {
@@ -147,8 +152,16 @@
   border: none;
   cursor: pointer;
   color: #d00;
-  font-size: 14px;
+  font-size: 15px;
 }
 .delete-btn:hover {
-  color: red;
+  color: rgb(113, 6, 6);
+}
+.wa-chat-search {
+  width: 90%;
+  margin: 10px auto;
+  padding: 6px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  display: block;
 }

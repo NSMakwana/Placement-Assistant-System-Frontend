@@ -31,7 +31,9 @@ const EnterResultDashboard = () => {
     }
 
     if (key === "company") {
-        setSelectedCompany(value);
+      const companyObj = companies.find(c => c.name === value);
+      setSelectedCompany(companyObj); // now you have id, name, etc.
+        
     }
     
     if (key === "companies") {

@@ -1,0 +1,218 @@
+/* .spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #ddd;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 30px auto;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.select-students-container{
+
+    margin-left: 18%;
+    margin-top: 5%;
+} */
+ /* Container */
+/* Container */
+.select-students-container {
+  max-width: 1800px;
+  /* margin: 40px auto; */
+  padding: 25px 30px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  font-family: 'Arial', sans-serif;
+  margin-left: 16%;
+  margin-top: 5%;
+}
+
+/* Heading */
+.select-students-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #1a1a1a;
+  font-size: 20px;
+}
+
+/* Round name input */
+.select-students-container input[type="text"],
+.select-students-container input[type="search"] {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 15px;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.select-students-container input[type="text"]:focus,
+.select-students-container input[type="search"]:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0,123,255,0.3);
+  outline: none;
+}
+
+/* Final round checkbox */
+.select-students-container label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+/* Scrollable student list */
+.student-list {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+  margin-top: 2%;
+  /* font-size: 15px; */
+}
+
+/* Custom scrollbar */
+.student-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.student-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.student-list::-webkit-scrollbar-thumb {
+  background: #007bff;
+  border-radius: 10px;
+}
+
+.student-list::-webkit-scrollbar-thumb:hover {
+  background: #0056b3;
+}
+
+/* Student row */
+.student-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 15px;
+  margin-bottom: 6px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+  font-size: 18px;
+  /* margin-top: 2%; */
+}
+
+/* Highlight selected student */
+.student-row.selected {
+  background-color: #d0e7ff;
+}
+
+/* Hover effect */
+.student-row:hover {
+  background-color: #e6f0ff;
+}
+
+/* Custom checkbox alignment */
+.student-row input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  margin: 0;
+}
+
+/* Button */
+.select-students-container button {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.select-students-container button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+/* Loading & no students text */
+.select-students-container p {
+  text-align: center;
+  color: #555;
+  font-style: italic;
+}
+/* Round info row */
+.round-info {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* space between input and checkbox */
+  margin-bottom: 20px;
+}
+
+/* Round name input */
+.round-info input[type="text"] {
+  flex: 1; /* take all remaining width */
+  padding: 22px 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 18px;
+  margin-left: 0%;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.round-info input[type="text"]:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0,123,255,0.3);
+  outline: none;
+}
+
+/* Checkbox label */
+.round-info label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  cursor: pointer;
+
+}
+
+/* Checkbox size */
+.round-info input[type="checkbox"] {
+  width: 28px;
+  height: 28px;
+}
+.search-input {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 18px; /* increase this value to make text bigger */
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0,123,255,0.3);
+  outline: none;
+}

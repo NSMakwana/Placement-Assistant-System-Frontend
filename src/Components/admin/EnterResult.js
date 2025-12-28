@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./EnterResult.css";
+import { useNavigate } from "react-router-dom";
 
-const EnterResult = ({ selectedCompany,selectedDesignation }) => {
+
+const EnterResult = ({ selectedCompany, selectedDesignation }) => {
   const [rounds, setRounds] = useState([]);
-  const [studentResults, setStudentResults] = useState({});
-
-  // Fetch rounds when a company is selected
+  const [newRound, setNewRound] = useState("");
+const navigate = useNavigate();
+  // Fetch rounds for selected company + designation
   useEffect(() => {
     if (!selectedCompany || !selectedDesignation) {
       setRounds([]);
@@ -15,88 +17,136 @@ const EnterResult = ({ selectedCompany,selectedDesignation }) => {
     const fetchRounds = async () => {
       try {
         const response = await fetch(
-
-            `https://placement-assistant-system.onrender.com/api/companies/${selectedCompany}/designations/${selectedDesignation}/rounds`
+          `https://placement-assistant-system.onrender.com/api/companies/${selectedCompany.name}/designations/${selectedDesignation}/rounds`
         );
+
         if (response.ok) {
           const data = await response.json();
-          console.log("Fetched Rounds:", data); 
           setRounds(data);
         } else {
           console.error("Failed to fetch rounds.");
         }
-      } catch (error) {
-        console.error("Error fetching rounds:", error);
+      } catch (err) {
+        console.error("Error fetching rounds:", err);
       }
     };
 
     fetchRounds();
-  }, [selectedCompany,selectedDesignation]); // Runs when selectedCompany or Selected Designation changes
+  }, [selectedCompany, selectedDesignation]);
 
-  // Handle result entry change
-  const handleResultChange = (round, value) => {
-    setStudentResults({
-      ...studentResults,
-      [round]: value,
-    });
-  };
+  // Add new round
+  const handleAddRound = async () => {
+    if (!newRound.trim()) return alert("Enter round name!");
 
-  // Submit results
-  const handleSubmit = async () => {
     try {
       const response = await fetch(
-        "https://your-app-name.onrender.com/api/results/enter",
+        `https://placement-assistant-system.onrender.com/api/companies/${selectedCompany.name}/designations/${selectedDesignation}/rounds`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(studentResults),
+          body: JSON.stringify({ roundName: newRound }),
         }
       );
+
       if (response.ok) {
-        alert("Results entered successfully!");
-      } else {
-        alert("Failed to submit results.");
+        alert("Round added!");
+        setNewRound("");
+        const updated = await response.json();
+        setRounds(updated);
       }
     } catch (error) {
-      console.error("Error submitting results:", error);
+      console.error("Error adding round:", error);
     }
   };
 
+  // Delete a round
+  const handleDeleteRound = async (roundNo) => {
+    if (!window.confirm("Delete this round?")) return;
+
+    try {
+      const response = await fetch(
+        `https://placement-assistant-system.onrender.com/api/companies/${selectedCompany}/designations/${selectedDesignation}/rounds/${roundNo}`,
+        { method: "DELETE" }
+      );
+
+      if (response.ok) {
+        alert("Round deleted!");
+        setRounds(rounds.filter((r) => r.round_no !== roundNo));
+      }
+    } catch (error) {
+      console.error("Delete failed:", error);
+    }
+  };
+
+  
+
   return (
     <div className="enter-result-container">
-      {/* Table of Rounds */}
-      {selectedCompany && (
-        <div className="rounds-table">
-          <h3>Rounds for {selectedCompany}</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>Sr. No</th>
-                <th>Round Name</th>
-                <th>Result</th>
+
+      <h2>Rounds for Selected Designation</h2>
+
+      {/* ROUND LIST TABLE */}
+      <table>
+        <thead>
+          <tr>
+            <th>Sr</th>
+            <th>Round Name</th>
+            <th colSpan={2}>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rounds.length > 0 ? (
+            rounds.map((round, index) => (
+              <tr key={round.round_no}>
+                <td>{index + 1}</td>
+                <td>{round.round}</td>
+
+                <td>
+                  <button
+                    className="enter-btn"
+                    onClick={() =>
+                      navigate("/admin/result/enter-result/page2", {
+                        state: {
+                          companyId: selectedCompany.id,
+                          designation: selectedDesignation,
+                          roundNo: round.round_no,
+                          roundName: round.round,
+                        },
+                      })
+                    }
+                  >
+                    Enter Result
+                  </button>
+                </td>
+
+                <td>
+                  <button
+                    className="delete-btn"
+                    onClick={() => handleDeleteRound(round.round_no)}
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {rounds.length > 0 ? (
-                rounds.map((round, index) => (
-                  <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td>{round.round}</td>
-                    <td>
-                    <button onClick={handleSubmit}>Enter Results</button>
-                    </td>
-                  </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan="3">No rounds available</td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-          
-        </div>
-      )}
+            ))
+          ) : (
+            <tr>
+              <td colSpan="3">No rounds added yet.</td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+
+      {/* ADD NEW ROUND */}
+      <div className="add-round-section">
+        <input
+          type="text"
+          placeholder="Enter new round"
+          value={newRound}
+          onChange={(e) => setNewRound(e.target.value)}
+        />
+        <button onClick={handleAddRound}>Add Round</button>
+      </div>
     </div>
   );
 };

@@ -1,0 +1,14 @@
+.enter-round-details { padding: 16px; background: #fff; border-radius: 6px; }
+.erd-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+.erd-top { display:flex; gap:16px; align-items:center; margin-bottom:8px; }
+.erd-top input[type="text"] { padding:6px; min-width:240px; }
+.erd-final { display:flex; align-items:center; }
+.erd-actions { margin-left:auto; }
+.erd-search { margin:12px 0; }
+.erd-students, .erd-results-table-wrap { margin-top:8px; }
+.erd-table { width:100%; border-collapse:collapse; }
+.erd-table th, .erd-table td { border:1px solid #eee; padding:8px; text-align:left; }
+.erd-bottom-actions { margin-top:10px; display:flex; gap:8px; align-items:center }
+.erd-next-btn { background:#2c7; padding:8px 12px; border:0; cursor:pointer; }
+.results input, .results select { width:100%; box-sizing:border-box; padding:4px; }
+.action-buttons button { margin-right:6px; }

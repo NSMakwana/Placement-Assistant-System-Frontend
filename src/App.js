@@ -101,11 +101,15 @@ import PollGenerator from './Pages/admin/Pollgenerator';
 import PollResults from './Pages/admin/PollResult';
 import PollList from './Pages/admin/PollList';
 import AdminChatPage from './Pages/admin/AdminChatPage';
-
+import EnterResult from './Components/admin/EnterResult';
+import SelectStudents from './Components/admin/SelectStudent';
+import EnterMarks from './Components/admin/EnterMarks';
 
 
 
 import PrivateRoute from './routes/PrivateRoute'; // adjust path if needed
+
+
 
 function App() {
   return (
@@ -151,6 +155,14 @@ function App() {
           </PrivateRoute>
         }
       >
+         <Route path="result" element={<EnterResultDashboard />} />
+
+  {/* PAGE 2 */}
+  <Route path="result/enter-result/page2" element={<SelectStudents />} />
+
+  {/* PAGE 3 */}
+  <Route path="result/enter-result/page3" element={<EnterMarks />} />
+{/* </Route> */}
         <Route index element={<A_Dashboard />} />
         <Route path="admin_dashboard" element={<A_Dashboard />} />
         <Route path="user_dashboard" element={<U_Dashboard />} />
@@ -165,8 +177,10 @@ function App() {
         <Route path="polllist" element={<PollList />} />
         <Route path="poll-results/:pollId" element={<PollResults />} />
         <Route path="chat" element={<AdminChatPage />} />
-
-
+        <Route path='enter result' element={<EnterResult/>}/>
+        
+        {/* <Route path="result/enter-result/page2" element={<SelectStudents />}/>
+        <Route path="page3" element={<EnterMarks />}/> */}
 
       </Route>
 
