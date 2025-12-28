@@ -100,6 +100,8 @@ import AdminProfile from './Pages/admin/AdminProfile';
 import PollGenerator from './Pages/admin/Pollgenerator';
 import PollResults from './Pages/admin/PollResult';
 import PollList from './Pages/admin/PollList';
+import Questions from './Pages/student/Questions';
+
 import AdminChatPage from './Pages/admin/AdminChatPage';
 import EnterResult from './Components/admin/EnterResult';
 import SelectStudents from './Components/admin/SelectStudent';
@@ -135,6 +137,7 @@ function App() {
         <Route path="company" element={<CompanyDashboard />} />
         <Route path="analysis" element={<AnalysisDashboard />} />
         <Route path="cvbuilder" element={<CVBuilder />} />
+        <Route path="questions" element={<Questions />} />
         <Route path="notifications" element={ <NotificationPage studentId={JSON.parse(localStorage.getItem("user"))?.id} />}/>     
         
        <Route path="poll/:pollId" element={<PollanswerPage />} />
