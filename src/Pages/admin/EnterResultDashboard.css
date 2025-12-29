@@ -1,5 +1,5 @@
 .Resultdashboard {
-    margin-left:20%; /* Sidebar width alignment */
+    margin-left:18%; /* Sidebar width alignment */
     width: auto; /* Remaining width for the dashboard */
     padding: 1px; /* Space around the content */
     box-sizing: border-box; /* Include padding in the total width */
@@ -44,7 +44,7 @@
   }
   
   .viewResult,.enterResult{
-    margin-top:179px; /* Space below navigation buttons */
+    margin-top:15%; /* Space below navigation buttons */
     /* Use the full available width */
     padding: 5px; /* Space inside the section */
     box-sizing: border-box; /* Include padding in total width */
@@ -53,7 +53,7 @@
     /* border-bottom: 2px solid #22b1bb; */
     background-color: #ffffff; /* White background for clarity */
     margin-bottom: 0;
-    margin-left:10%;
+    margin-left:17%;
     width:100%;
     position:fixed;
     overflow-y: scroll;

@@ -6,7 +6,9 @@
     flex-wrap: wrap; /* Allows the elements to wrap when there's not enough space */
     align-items: center; /* Align items vertically in the center */
     padding: 10px;   
-    margin-left: 10px;
+    margin-left:0px;
+    max-width: 1300px;
+    /* margin-top: 5%; */
   }
   
   .filters > div {

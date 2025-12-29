@@ -1,26 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-
 import "./EnterMarks.css";
 
 const EnterMarks = () => {
   const location = useLocation();
-  console.log("LOCATION STATE 👉", location.state);
 
   const {
     companyId,
     designation,
     roundName,
     isFinalRound,
-    selectedStudents=[],
+    selectedStudents = [],
   } = location.state || {};
 
   const [students, setStudents] = useState([]);
   const [results, setResults] = useState({});
 
-  // Initialize students & results
+  // Initialize students & result structure
   useEffect(() => {
-     console.log("SELECTED STUDENTS 👉", selectedStudents);
     if (!Array.isArray(selectedStudents) || selectedStudents.length === 0)
       return;
 
@@ -38,12 +35,7 @@ const EnterMarks = () => {
     setResults(initResults);
   }, [selectedStudents]);
 
-  // Safety check
-  // if (students.length === 0) {
-  //   return <h3>Please go back and select students</h3>;
-  // }
-
-  // Handle input change
+  // Handle input changes
   const handleChange = (studentId, field, value) => {
     setResults((prev) => ({
       ...prev,
@@ -54,19 +46,19 @@ const EnterMarks = () => {
     }));
   };
 
-  // Submit result
-  const submitResult = async (studentId) => {
+  // Submit result (FIXED)
+  const submitResult = async (student) => {
     const payload = {
-      studentId,
-      studentName:students.name,
-      studentEmail:students.email,
+      studentId: student.id,
+      studentName: student.name,      // ✅ FIXED
+      studentEmail: student.email,    // ✅ FIXED
       companyId,
-      designation: designation,
+      designation,
       roundName,
-      marks: results[studentId].marks,
-      status: results[studentId].status,
-      remarks: results[studentId].remarks,
-      finalRound:isFinalRound,
+      marks: results[student.id]?.marks,
+      status: results[student.id]?.status,
+      remarks: results[student.id]?.remarks,
+      finalRound: isFinalRound,
     };
 
     try {
@@ -80,7 +72,7 @@ const EnterMarks = () => {
       );
 
       if (res.ok) {
-        alert("Result saved successfully");
+        alert(`Result saved for ${student.name}`);
       } else {
         alert("Failed to save result");
       }
@@ -130,8 +122,8 @@ const EnterMarks = () => {
                     handleChange(s.id, "status", e.target.value)
                   }
                 >
-                  <option>Cleared</option>
-                  <option>Not Cleared</option>
+                  <option value="Cleared">Cleared</option>
+                  <option value="Not Cleared">Not Cleared</option>
                 </select>
               </td>
 
@@ -146,7 +138,7 @@ const EnterMarks = () => {
               </td>
 
               <td>
-                <button onClick={() => submitResult(s.id)}>
+                <button onClick={() => submitResult(s)}>
                   Submit
                 </button>
               </td>

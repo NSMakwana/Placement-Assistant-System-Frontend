@@ -5,7 +5,7 @@
     flex-wrap: wrap; /* Allows the elements to wrap when there's not enough space */
     align-items: center; /* Align items vertically in the center */
     padding: 10px;   
-    margin-left: 10px;
+    margin-left: 17%;
   }
   
   .ResultFilters > div {
