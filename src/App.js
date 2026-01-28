@@ -151,42 +151,34 @@ function App() {
 
       {/* Protected Routes for Admin */}
       <Route
-        path="/admin/*"
-        element={
-          <PrivateRoute allowedRoles={['admin']}>
-            <AdminDashboardLayout />
-          </PrivateRoute>
-        }
-      >
-         <Route path="result" element={<EnterResultDashboard />} />
+  path="/admin/*"
+  element={
+    <PrivateRoute allowedRoles={['admin']}>
+      <AdminDashboardLayout />
+    </PrivateRoute>
+  }
+>
+  <Route index element={<A_Dashboard />} />
+  <Route path="admin_dashboard" element={<A_Dashboard />} />
+  <Route path="user_dashboard" element={<U_Dashboard />} />
+  <Route path="companydetails" element={<A_CompanyDashboard />} />
+  <Route path="result" element={<EnterResultDashboard />} />
 
-  {/* PAGE 2 */}
+  {/* Result flow */}
   <Route path="result/enter-result/page2" element={<SelectStudents />} />
-
-  {/* PAGE 3 */}
   <Route path="result/enter-result/page3" element={<EnterMarks />} />
-{/* </Route> */}
-        <Route index element={<A_Dashboard />} />
-        <Route path="admin_dashboard" element={<A_Dashboard />} />
-        <Route path="user_dashboard" element={<U_Dashboard />} />
-        <Route path="companydetails" element={<A_CompanyDashboard />} />
-        <Route path="result" element={<EnterResultDashboard />} />
-        <Route path="analysis" element={<A_AnalysisDashboard />} />
-        <Route path="manage_admin" element={<ManageAdmin />} />
-        <Route path="preplacement_talk" element={<PreplacementTalk />} />
-        <Route path="expense" element={<Expense />} />
-        <Route path="adminprofile" element={<AdminProfile />} />
-        <Route path="pollgenerator" element={<PollGenerator />} />
-        <Route path="polllist" element={<PollList />} />
-        <Route path="poll-results/:pollId" element={<PollResults />} />
-        <Route path="chat" element={<AdminChatPage />} />
-        <Route path='enter result' element={<EnterResult/>}/>
-        
-        {/* <Route path="result/enter-result/page2" element={<SelectStudents />}/>
-        <Route path="page3" element={<EnterMarks />}/> */}
 
-      </Route>
-
+  <Route path="analysis" element={<A_AnalysisDashboard />} />
+  <Route path="manage_admin" element={<ManageAdmin />} />
+  <Route path="preplacement_talk" element={<PreplacementTalk />} />
+  <Route path="expense" element={<Expense />} />
+  <Route path="adminprofile" element={<AdminProfile />} />
+  <Route path="pollgenerator" element={<PollGenerator />} />
+  <Route path="polllist" element={<PollList />} />
+  <Route path="poll-results/:pollId" element={<PollResults />} />
+  <Route path="chat" element={<AdminChatPage />} />
+</Route>
+  
       {/* NEW Fullscreen Route (outside layout) */}
       <Route path="/admin/analysis/fullscreen" element={<A_AnalysisFullScreen />} />
 

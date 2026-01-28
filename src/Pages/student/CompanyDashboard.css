@@ -1,5 +1,5 @@
 .CompanyDashboard {
-    margin-left: 16%; /* Sidebar width alignment */
+    margin-left: 1%; /* Sidebar width alignment */
     /* width: auto; Remaining width for the dashboard */
     padding: 1px; /* Space around the content */
     box-sizing: border-box; /* Include padding in the total width */
@@ -88,7 +88,7 @@
     /* border-bottom: 2px solid #22b1bb; */
     background-color: #ffffff; /* White background for clarity */
     margin-bottom: 0;
-    margin-left:17%;
+    margin-left:0%;
     width:100%;
     max-width: 900px;
     /* position:fixed; */

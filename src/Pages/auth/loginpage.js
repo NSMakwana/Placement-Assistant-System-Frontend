@@ -31,10 +31,10 @@ function LoginPage() {
         localStorage.setItem("IsLoggedIn",true);
         alert("Login successful! Redirecting to dashboard...");
         const StoredUser=JSON.parse(localStorage.getItem("user"));
-        if(StoredUser.role==="admin")
-          navigate("/admin/admin_dashboard"); // Redirect to dashboard
+        if(StoredUser.role==="admin"||StoredUser.role==="Sub Admin")
+          navigate("/admin/admin_dashboard",{ replace: true }); // Redirect to dashboard
         if(StoredUser.role==="student")
-          navigate("/student/dashboard"); // Redirect to dashboard
+          navigate("/student/dashboard",{ replace: true }); // Redirect to dashboard
       } else {
         const error = await response.text();
         alert(error);

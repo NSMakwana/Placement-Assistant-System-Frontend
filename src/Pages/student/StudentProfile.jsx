@@ -44,6 +44,7 @@ const StudentProfile = () => {
           padding: "25px",
           borderRadius: "10px",
           boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+          
         }}
       >
         <h2 style={{ marginBottom: "15px" }}>Student Profile</h2>
